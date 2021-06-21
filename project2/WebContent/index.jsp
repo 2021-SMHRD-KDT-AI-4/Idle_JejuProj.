@@ -8,6 +8,53 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<style type="text/css">
+	
+		.check{
+			position: absolute;
+			left: 50%; 
+			top: 50%;
+			z-index: -1;
+			transform: translate(-50%,-90%);
+			width: 500px;
+			height: 500px; 
+			box-shadow: 0 0 10px rgba(0,0,0,0.5);
+			background : lightgray;
+			border-radius: 5px;
+			text-align: right;
+			padding: 20px;
+			box-sizing: border-box;
+			opacity: 0;
+			transition: all 0.5s;
+			
+		}
+		
+		.check a{
+			color: gray;
+			text-decoration: none;
+		}
+		.check:target{
+			opacity: 1;
+			z-index: 5;
+		}
+		
+		.check:target + .dim{
+			opacity: 1;
+			z-index: 2;
+		}
+		.dim {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index:-1;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.6);
+			opacity: 0;
+			transition: all 0.5s
+		}
+		
+	</style>
 </head>
 <body class="landing is-preload">
 		<div id="page-wrapper">
@@ -50,16 +97,44 @@
 						</ul>
 					</nav>
 				</header>
-
+			<script type="text/javascript">
+				$('input.ct').
+			
+			</script>
 			<!-- Banner -->
 				<section id="banner">
 					<h2>JEJUGo</h2>
 					<p>대충 제주 관광을 도와준다는 글 길이는 이정도로로</p>
 					<ul class="actions special">
 					<!-- <li><a href="signin.jsp" class="button primary">Sing In</a></li> -->	
-						<li><a href="#" class="button primary">태그 설정</a></li>
+											
+						<li><a href="#check_tag" class="button primary" id="primary">태그 설정</a></li>
+						
+						<form action="#" method="post">
+							<div id="check_tag" class="check">	
+								
+								<a href="#a">닫기</a>
+								<table border=1 id="cht">
+									<tr align="center">
+										<td>
+											<input type="checkbox" name="tag" value="가족" class="ct" checked><label for="family">가족</label>
+											<input type="checkbox" name="tag" value="친구" class="ct" checked><label for="friend">친구</label><br>
+											<input type="checkbox" name="tag" value="연인" class="ct"><label for="chk1">연인</label>
+											<input type="checkbox" name="tag" value="힐링" class="ct"><label for="chk1">힐링</label> 
+										</td>
+									</tr>
+									<tr align="center">
+										<td>
+											<input type="submit" value="확인">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</form>
+							<div class="dim"></div>
 					</ul>
 				</section>
+
 
 			<!-- Main -->
 				<section id="main" class="container">
