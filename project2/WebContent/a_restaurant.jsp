@@ -74,7 +74,7 @@
 								</li>
 							<%	} %>
 										
-							<li><a href="#">top</a></li>
+							<li><a href="a_restaurant.jsp">top</a></li>
 						</ul>
 					</li>
 					<%	if(info == null){ 	%>

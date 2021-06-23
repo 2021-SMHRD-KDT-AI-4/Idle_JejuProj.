@@ -109,7 +109,7 @@
 										</li>
 									<%	} %>
 										
-									<li><a href="#">top</a></li>
+									<li><a href="index.jsp">top</a></li>
 								</ul>
 							</li>
 							<%	if(info == null){ 	%>
