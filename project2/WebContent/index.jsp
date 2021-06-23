@@ -286,7 +286,7 @@
 								<h3>나만의 여행지도</h3>
 								<p>내가 다녀온 장소를 한 눈에 보자!</p>
 								<ul class="actions special">
-									<li><a href="c_mymap.jsp" class="button alt">여행지도</a></li>
+									<li><a href="Mymap" class="button alt">여행지도</a></li>
 								</ul>
 							</section>
 

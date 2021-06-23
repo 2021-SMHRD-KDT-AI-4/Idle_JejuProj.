@@ -122,4 +122,39 @@ public class TourDAO {
 		}
 		return recommend;
 	}
+
+	public ArrayList<TourDTO> mymap(ArrayList<String> visited) {
+		getConnection();
+		ArrayList<TourDTO> visited_info = new ArrayList<TourDTO>();
+		
+		try {
+			String sql = "SELECT * FROM J_SIGHT WHERE ";
+			for (int i = 0; i < visited.size(); i++) {
+				sql += "NAME = ? ";
+				if (i != visited.size()-1) {
+					sql += " OR ";
+				}
+			}
+			psmt = conn.prepareStatement(sql);
+			for (int i = 0; i < visited.size(); i++) {
+				psmt.setString(i+1, visited.get(i));
+			}
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				String name = rs.getString("NAME");
+				String info = rs.getString("INFO");
+				String addr = rs.getString("ADDR");
+				Double lat = rs.getDouble("LAT");
+				Double lon = rs.getDouble("LONGI");
+				
+				TourDTO visited_sight = new TourDTO(name, info, addr, lat, lon);
+				visited_info.add(visited_sight);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return visited_info;
+	}
 }

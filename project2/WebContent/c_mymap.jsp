@@ -1,3 +1,6 @@
+<%@page import="com.TourDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.TourInfoDTO"%>
 <%@page import="com.MemberDAO"%>
 <%@page import="com.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -44,10 +47,26 @@
 
 		<!-- Header -->
 		<%
-			MemberDTO info = (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
-			MemberDAO dao = new MemberDAO();
-			//ArrayList<MessageDTO> list = dao.select(info.getEmail());
-		%>
+				// 사용자 정보 (id, pw, name, age, phone)
+				MemberDTO info =  (MemberDTO)session.getAttribute("info");
+				// 사용자 태그 선택 (tag, day, people)
+				TourInfoDTO tag_info =  (TourInfoDTO)session.getAttribute("tag_info");
+				// 현재 위치_관광지 기준(name, lat, lon)
+				TourInfoDTO loc =  (TourInfoDTO)session.getAttribute("loc");
+				// 추천 여행지 정보(name, info, addr, img, lat, lon, cal)
+				ArrayList<TourDTO> recommend = (ArrayList)session.getAttribute("recommend");
+				// 다녀간 여행지 리스트(name)
+				ArrayList<String> visited = (ArrayList)session.getAttribute("visited");
+				// 다녀간 여행지 정보(name, addr, info, lat, lon)
+				ArrayList<TourDTO> visited_info = (ArrayList)session.getAttribute("visited_info");
+				
+				Double gps_lat = 33.510650537434664;
+				Double gps_lon = 126.49125683810726;
+				if(loc != null) {
+					gps_lat = loc.getLat();
+					gps_lon = loc.getLon();
+				}
+			%>
 		<header id="header">
 			<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
 			<nav id="nav">
@@ -102,11 +121,11 @@
 		   					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		   					 
 		   					// 마커를 표시할 위치와 title 객체 배열입니다 
-		   					var positions = [
-		   					    {
-		   					        title: '카카오', 
-		   					        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-		   					    },
+/* 		   					var positions = [
+		   						{
+				   					title: '생태연못'
+				   					latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+		   						},
 		   					    {
 		   					        title: '생태연못', 
 		   					        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
@@ -119,8 +138,16 @@
 		   					        title: '근린공원',
 		   					        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
 		   					    }
-		   					];
-		
+		   					]; */
+		   					var size = <%= visited_info.size() %>;
+		   					var positions = {title :"생태연못", latlng:new kakao.maps.LatLng(33.450936, 126.569477)};
+		   					for (var i = 0; i < size; i++) {
+								positions.title = "텃밭";
+								positions.latlng = new kakao.maps.LatLng(33.48945642595957, 126.6839924371252);
+							}
+		   					
+							console.log(positions)
+							
 		   					// 마커 이미지의 이미지 주소입니다
 		   					var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 		   					    
@@ -149,7 +176,7 @@
 								<tr align = "center">
 									<td>이름</td>
 									<td>주소</td>
-									<td>한줄평</td>
+									<td>정보</td>
 								</tr>
 								<tr align = "center">
 									<td>티앗</td>
