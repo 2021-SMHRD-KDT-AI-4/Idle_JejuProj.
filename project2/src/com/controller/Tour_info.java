@@ -21,6 +21,8 @@ public class Tour_info extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		
 		ArrayList<String> visited = new ArrayList<String>();
+		ArrayList<String> visited_res = new ArrayList<String>();
+		ArrayList<String> visited_cafe = new ArrayList<String>();
 		
 		String[] tag = request.getParameterValues("tag");
 		String people = request.getParameter("people");
@@ -33,6 +35,8 @@ public class Tour_info extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("visited", visited);
+		session.setAttribute("visited_res", visited_res);
+		session.setAttribute("visited_cafe", visited_cafe);
 		session.setAttribute("loc", loc);
 		session.setAttribute("tag_info", tag_info);
 		response.sendRedirect("index.jsp");
