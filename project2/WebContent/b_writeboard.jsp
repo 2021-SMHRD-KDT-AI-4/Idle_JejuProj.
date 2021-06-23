@@ -4,73 +4,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<head>
-	<title>Generic - Alpha by HTML5 UP</title>
+	<title>게시글 작성│JEJUGo</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	
+	<style>
+		#btn1 {
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border: 1px solid #ADACAC;
+			background-color:#ADACAC;
+			color : white;
+			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
+		}
+		#btn1:hover {
+			border: 1px solid #F97B5A;
+			background-color:#F97B5A ;
+			color : white;
+			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
+		}
+		#btn1:active {
+			border: 1px solid #E9E8E7;
+			background-color:#F97B5A ;
+			color : white;
+			position: relative;
+			box-shadow: 0px 0px 0 rgb(0,0,0,0.5);
+		}
+	
+		img{
+			width: 200px;
+			height: 260px;
+			object-fit: cover;
+		}
+		
+		td{
+			width : 33%;
+		}
+		
+	</style>
+	
 </head>
 <body class="is-preload">
-		<div id="page-wrapper">
+	<div id="page-wrapper">
 
-			<!-- Header -->
-			<%
-				MemberDTO info =  (MemberDTO)session.getAttribute("info");  
-			%>
-				<header id="header">
-					<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
-					<nav id="nav">
+		<!-- Header -->
+		<%
+			MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
+		%>
+		<header id="header">
+			<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index.jsp">Home</a></li>
+					<li>
+						<a href="#" class="icon solid fa-angle-down">MENU</a>
 						<ul>
-							<li><a href="index.jsp">Home</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">MENU</a>
-								<ul>
-									<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
-									<li>
-										<a href="#">Bookmark</a>
-										<ul>
-										<%	if(info == null){ %>
-											<li><a href="signin.jsp">sign in please</a></li>
-										<%	}else{ %>
-											<li><a href="l_bookmark_de.jsp">Destination</a></li>
-											<li><a href="l_bookmark_re.jsp">Restaurant</a></li>
-											<li><a href="l_bookmark_ca.jsp">Cafe</a></li>
-										<%	} %>	
-										</ul>
-									</li>
-									<li><a href="l_bookmark_ca.jsp">Top</a></li>
-								</ul>
-							</li>
-							<%	if(info == null){ 	%>
-								<!-- 로그인 안했을때 -->
-									<li><a href="signin.jsp" class="button primary">Sing In</a></li>
-									<li><a href="signup.jsp" class="button">Sign Up</a></li>
-							<%	}else{ %>	
-									<li><a href="signoutService" class="button">Sign Out</a></li>
+							<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
+									
+							<%	if(info!=null){ %>
+								<li><a href="l_mypage.jsp">mypage</a></li>
+								
+							<%	}else{ %>
+								<li><a href="#">mypage</a>
+									<ul>
+										<li><a href="signin.jsp">sign in please</a></li>
+									</ul>
+								</li>
 							<%	} %>
+										
+							<li><a href="b_writeboard.jsp">top</a></li>
 						</ul>
-					</nav>
-				</header>
+					</li>
+					<%	if(info == null){ 	%>
+						<!-- 로그인 안했을때 -->
+						<li><a href="signin.jsp" class="button primary">Sing In</a></li>
+						<li><a href="signup.jsp" class="button">Sign Up</a></li>
+					<%	}else{ %>	
+							<li><a href="signoutService" class="button">Sign Out</a></li>
+					<%	} %>
+				</ul>
+			</nav>
+		</header>
 
-			<!-- Main -->
-			<section id="main" class="container">
-					<header>
-						<h2>BOARD</h2>
-						<p>문의사항을 남겨주세요</p>
-					</header>
-					<div id = "board">
-				<form action="">
+		<!-- Main -->
+		<section id="main" class="container">
+			<header>
+				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
+				<p>게시글 작성</p>
+			</header>
+			<div id = "board">
+			<form action="b_boardmain.jsp">
 				<table id="list">
 					<tr>
-						<td>TITLE</td>
+						<td>제목</td>
 						<td><input type="text" name="title"> </td>
 					</tr>
 					<tr>
-						<td>WRITER</td>
+						<td>작성자</td>
 						<td><input type="text" name="writer"> </td>
 					</tr>
 					<tr>
-						<td colspan="2">CONTENT</td>
+						<td colspan="2">내용</td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -80,14 +117,14 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-							<input type="reset" value="초기화">
-							<input type="submit" value="작성하기">
+							<input id = "btn1" type="reset" value="초기화">
+							<input id = "btn1" type="submit" value="작성하기">
 						</td>
 					</tr>
 				</table>
-				</form>
+			</form>
 			</div>
-				</section>
+		</section>
 
 			<!-- Footer -->
 			<footer id="footer">
