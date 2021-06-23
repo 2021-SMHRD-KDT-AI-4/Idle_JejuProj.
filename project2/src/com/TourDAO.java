@@ -263,9 +263,9 @@ public class TourDAO {
 		
 		try {
 			
-			String sql = "SELECT * FROM J_SIGHT WHERE";
+			String sql = "SELECT * FROM J_SIGHT WHERE ";
 			for (int i = 0; i < visited.size(); i++) {
-				sql += "NAME = ? ";
+				sql += "NAME = ?";
 				if (i != visited.size()-1) {
 					sql += " OR ";
 				}
@@ -274,6 +274,7 @@ public class TourDAO {
 			for (int i = 0; i < visited.size(); i++) {
 				psmt.setString(i+1, visited.get(i));
 			}
+			
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -289,6 +290,8 @@ public class TourDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return visited_info;
 	}
