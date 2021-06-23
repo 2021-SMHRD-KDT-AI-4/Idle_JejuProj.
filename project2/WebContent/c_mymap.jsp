@@ -154,7 +154,7 @@
 					
 					//---------------------------마커 찍을곳----------------------------
 					// 마커를 표시할 위치와 title 객체 배열입니다 
-					var positions = [
+					<%-- var positions = [
 					    {
 					        title: '<%= recommend.get(0).getName() %>', 
 					        latlng: new kakao.maps.LatLng(<%= recommend.get(0).getLat() %>,<%= recommend.get(0).getLon() %>)
@@ -167,7 +167,14 @@
 					        title: '<%= recommend.get(2).getName() %>', 
 					        latlng: new kakao.maps.LatLng(<%= recommend.get(2).getLat() %>, <%= recommend.get(2).getLon() %>)
 					    }
-					];
+					]; --%>
+					
+					var size = <%= visited_info.size() %>;
+   					var positions = {title :"생태연못", latlng:new kakao.maps.LatLng(33.450936, 126.569477)};
+   					for (var i = 0; i < size; i++) {
+						positions.title = "텃밭";
+						positions.latlng = new kakao.maps.LatLng(33.48945642595957, 126.6839924371252);
+					}
 					
 					// 마커 이미지의 이미지 주소
 					var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
