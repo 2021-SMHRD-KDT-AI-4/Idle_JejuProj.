@@ -141,8 +141,9 @@
 				</tbody>
 			</table>
 				<% if(info == null) { %>
-					<script> alert("로그인 후 이용해주세요"); </script>
 					<a href="b_boardmain.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
+					<script> alert("로그인 후 이용해주세요"); </script>
+					
 				<% } else {%>
 					<a href="b_writeboard.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
 				<% } %>
