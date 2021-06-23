@@ -112,7 +112,106 @@
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8b2521ce63b91e985888264b8d22f1ec&libraries=services"></script> 						
    						<script>
    						
-   							var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+   						var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+					    mapOption = { 
+					        center: new kakao.maps.LatLng(35.11096661278524, 126.87736495574595), // 지도의 중심좌표
+					        level: 7 // 지도의 확대 레벨
+					    };
+					
+					//------------------------현재 위치(임의로 제주공항) 가져오기----------------------
+					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+					
+					if (navigator.geolocation) {			// HTML5의 geolocation으로 사용할 수 있는지 확인
+   					    
+   					    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+   					    navigator.geolocation.getCurrentPosition(function(position) {
+   					        var lat = position.coords.latitude, 		// 위도
+   					            lon = position.coords.longitude; 		// 경도
+   					        var locPosition = new kakao.maps.LatLng(<%= loc.getLat() %>,<%= loc.getLon() %>), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
+   					            message = '현재위치'; 						// 인포윈도우에 표시될 내용
+   					        displayMarker(locPosition, message);	 	// 마커, 인포윈도우 표시
+   					      });
+   					    
+   					} else { 			// HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+   					    var locPosition = new kakao.maps.LatLng(<%= loc.getLat() %>,<%= loc.getLon() %>),   // 제주공항
+   					        message = '네트워크를 확인하세요'
+   					    displayMarker(locPosition);
+   					}
+					function displayMarker(locPosition, message) {	// 지도에 마커와 인포윈도우를 표시하는 함수
+   					    var marker = new kakao.maps.Marker({  		// 마커 생성
+   					        map: map, 
+   					        position: locPosition
+   					    }); 
+   					    var iwContent = message, 		// 인포윈도우에 표시할 내용
+   					        iwRemoveable = false;
+   					    var infowindow = new kakao.maps.InfoWindow({ // 인포윈도우 생성
+   					        content : iwContent,
+   					        removable : iwRemoveable
+   					    });
+   					    infowindow.open(map, marker);	// 인포윈도우를 마커위에 표시
+   					    map.setCenter(locPosition);     // 지도 중심좌표를 접속위치로 변경
+   					} 
+					
+					//---------------------------마커 찍을곳----------------------------
+					// 마커를 표시할 위치와 title 객체 배열입니다 
+					var positions = [
+					    {
+					        title: '<%= recommend.get(0).getName() %>', 
+					        latlng: new kakao.maps.LatLng(<%= recommend.get(0).getLat() %>,<%= recommend.get(0).getLon() %>)
+					    },
+					    {
+					        title: '<%= recommend.get(1).getName() %>', 
+					        latlng: new kakao.maps.LatLng(<%= recommend.get(1).getLat() %>, <%= recommend.get(1).getLon() %>)
+					    },
+					    {
+					        title: '<%= recommend.get(2).getName() %>', 
+					        latlng: new kakao.maps.LatLng(<%= recommend.get(2).getLat() %>, <%= recommend.get(2).getLon() %>)
+					    }
+					];
+					
+					// 마커 이미지의 이미지 주소
+					var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+					// 마커 이미지의 이미지 크기 
+				    var imageSize = new kakao.maps.Size(24, 35);
+				 // 마커 이미지를 생성 
+				    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+					for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: map, // 마커를 표시할 지도
+					        position: positions[i].latlng, // 마커의 위치
+					        image : markerImage
+					    });
+
+					    // 마커에 표시할 인포윈도우를 생성합니다 
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].title // 인포윈도우에 표시할 내용
+					    });
+					    marker.setMap(map);
+
+					    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+					    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+					    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					}
+
+					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+   						
+   						
+   						
+   							<%-- var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
    					    	mapOption = { 
    					       	 	center: new kakao.maps.LatLng(33.38158123679322, 126.53546236328559), // 지도의 중심좌표
    					        	level: 10 // 지도의 확대 레벨
@@ -166,7 +265,7 @@
 		   					        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 		   					        image : markerImage // 마커 이미지 
 		   					    });
-		   					}
+		   					} --%>
 					   	</script>
 					   
 					   
