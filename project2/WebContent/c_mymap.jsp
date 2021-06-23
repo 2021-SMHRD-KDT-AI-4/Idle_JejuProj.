@@ -287,7 +287,6 @@
 		   					} --%>
 					   	</script>
 					   
-					   
 						<h3>다녀온 곳 리스트</h3>
 						<form action = "c_mymap.jsp" method = "post">
 							<table align = "center">
@@ -296,52 +295,13 @@
 									<td>주소</td>
 									<td>정보</td>
 								</tr>
-								<tr align = "center">
-									<td>티앗</td>
-									<td>광주광역시 동구 동명동</td>
-									<td>
-										<form method="post" action="#">
-										<div class="row gtr-uniform gtr-50">
-											<div class="col-9 col-12-mobilep">
-												<input type="text" name="rating" id="query" value="" placeholder="Query" />
-											</div>
-											<div class="col-3 col-12-mobilep">
-												<input type="submit" id = "btn1" value="등록" class="fit" />
-											</div>
-										</div>
-										</form>
-									
-									</td>
-								</tr>
-								<tr>	
-									<td>아우스밀</td>
-									<td>광주광역시 동구 동명동 동명로25번길 4-1</td>
-									<td>
-										<div class="row gtr-uniform gtr-50">
-											<div class="col-9 col-12-mobilep">
-												<input type="text" name="rating" id="query" value="" placeholder="Query" />
-											</div>
-											<div align = "center" class="col-3 col-9-mobilep">
-												<input type="submit" id = "btn1" value="등록" class="fit" />
-											</div>
-										</div>
-									</td>	
-								</tr>
-								<tr align = "center">
-									<td>온화</td>
-									<td>광주광역시 동구 동명동 동계천로 151-31</td>
-									<td>
-										<div class="row gtr-uniform gtr-50">
-											<div class="col-9 col-12-mobilep">
-												<input type="text" name="rating" id="query" value="" placeholder="Query" />
-											</div>
-											<div align = "center" class="col-3 col-9-mobilep">
-												<input type="submit" id = "btn1" value="등록" class="fit" />
-											</div>
-										</div>
-									</td>
-								</tr>
-								
+								<% for(int i =0; i<visited_info.size(); i++) { %>
+									<tr align = "center">
+										<td><%= visited_info.get(i).getName() %></td>
+										<td><%= visited_info.get(i).getAddr() %></td>
+										<td><%= visited_info.get(i).getInfo() %></td>
+									</tr>
+								<% } %>
 							</table>
 						</form>
 						
