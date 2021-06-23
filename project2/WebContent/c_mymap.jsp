@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.Gson"%>
 <%@page import="com.TourDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.TourInfoDTO"%>
@@ -60,6 +61,9 @@
 				// 다녀간 여행지 정보(name, addr, info, lat, lon)
 				ArrayList<TourDTO> visited_info = (ArrayList)session.getAttribute("visited_info");
 				
+				Gson gson = new Gson();
+	            String json = gson.toJson(visited_info);
+				
 				Double gps_lat = 33.510650537434664;
 				Double gps_lon = 126.49125683810726;
 				if(loc != null) {
@@ -114,13 +118,13 @@
    						
    						var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 					    mapOption = { 
-					        center: new kakao.maps.LatLng(35.11096661278524, 126.87736495574595), // 지도의 중심좌표
-					        level: 7 // 지도의 확대 레벨
+					        center: new kakao.maps.LatLng(33.37420714240573, 126.5376342291527), // 지도의 중심좌표
+					        level: 10 // 지도의 확대 레벨
 					    };
 					
 					//------------------------현재 위치(임의로 제주공항) 가져오기----------------------
 					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-					
+<%-- 					
 					if (navigator.geolocation) {			// HTML5의 geolocation으로 사용할 수 있는지 확인
    					    
    					    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -136,7 +140,7 @@
    					    var locPosition = new kakao.maps.LatLng(<%= loc.getLat() %>,<%= loc.getLon() %>),   // 제주공항
    					        message = '네트워크를 확인하세요'
    					    displayMarker(locPosition);
-   					}
+   					} --%>
 					function displayMarker(locPosition, message) {	// 지도에 마커와 인포윈도우를 표시하는 함수
    					    var marker = new kakao.maps.Marker({  		// 마커 생성
    					        map: map, 
@@ -168,14 +172,22 @@
 					        latlng: new kakao.maps.LatLng(<%= recommend.get(2).getLat() %>, <%= recommend.get(2).getLon() %>)
 					    }
 					]; --%>
+					var jsonStr = ('<%= json %>');
+					console.log(jsonStr);
+					var jsonObj = JSON.parse(jsonStr);
+					console.log(jsonObj[1]['name']);
+					
 					
 					var size = <%= visited_info.size() %>;
-   					var positions = {title :"생태연못", latlng:new kakao.maps.LatLng(33.450936, 126.569477)};
-   					for (var i = 0; i < size; i++) {
-						positions.title = "텃밭";
-						positions.latlng = new kakao.maps.LatLng(33.48945642595957, 126.6839924371252);
+   					var positions = [{title :jsonObj[0]['name'], latlng:new kakao.maps.LatLng(jsonObj[0]['lat'], jsonObj[0]['lon'])}];
+   					for (var i = 1; i < size; i++) {
+						positions[i] = (
+								{title : jsonObj[i]['name'],
+								latlng:new kakao.maps.LatLng(jsonObj[i]['lat'], jsonObj[i]['lon'])
+								})
+						/* positions.latlng = new kakao.maps.LatLng(33.48945642595957, 126.6839924371252); */
 					}
-					
+					console.log(positions)
 					// 마커 이미지의 이미지 주소
 					var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 					// 마커 이미지의 이미지 크기 
