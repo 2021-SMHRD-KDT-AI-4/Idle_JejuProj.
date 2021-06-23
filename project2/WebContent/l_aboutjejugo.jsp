@@ -4,10 +4,38 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Contact - Alpha by HTML5 UP</title>
+		<title>About│JEJUGo</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<style type="text/css">
+			image{
+				text-align: center;
+			}
+			table {
+				margin: 0 0 2em 0;
+				width: 100%;
+			}
+
+			table tbody tr {
+				border: solid 1px #f8f8f8;
+				border-left: 0;
+				border-right: 0;
+				background-color: white;
+				
+			}
+
+			table tbody tr:nth-child(2n + 1) {
+				background-color: white;
+				height: 533px;
+			}
+
+		table td {
+			padding: 0.75em 0.75em;
+		}
+			<!-- e5e5e5   f8f8f8 -->
+		</style>
 	</head>
 <body class="is-preload">
 	<div id="page-wrapper">
@@ -58,20 +86,26 @@
 				<p>든든한 여행 메이트 JEJUGo</p>
 			</header>
 			<div class="box">
-				<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 				<h3>제주고는</h3>
-				<p> 2021년 스마트 인재 개발원에서 진행된 프로젝트 </p>
+				<p> 　2021년 스마트 인재 개발원 인공지능 4차반에서 진행된 프로젝트로 사용자의 위치, 여행 특성을 이용해 다음 여행지를 추천해 줌으로써 제주도 관광을 도와주는 프로그램입니다.<br><br>
+					　계획 없이 떠난 제주도, 여행 길잡이 제주고와 함께 행복한 추억 쌓아보시는게 어떤가요?
+				</p>
+				
+				<span class="image featured"><img src="images/jeju_about.PNG" alt="" /></span>
 				<div class="row">
+					
 					<div class="row-6 row-12-mobilep">
-						<h3>And now a subheading</h3>
-						<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
-					</div>
-					<div class="row-6 row-12-mobilep">
-						<h3>And another subheading</h3>
-						<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+					
+						<h3><br>프로젝트 참여인원</h3>
+						<p>김동준(총괄)　dongjunHi@gmail.com<br>이인규  　　　  phosphorus@gmail.com <br>한혁진  　　　  jinjinjaRa@gmail.com <br>박정민  　　　 domdomdari@gmail.com</p>
 					</div>
 				</div>
-			</div>
+				
+			</div> 
+			
+			
+				
+			
 		</section>
 
 		<!-- Footer -->

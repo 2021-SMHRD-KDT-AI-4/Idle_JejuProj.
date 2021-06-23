@@ -149,13 +149,33 @@ public class MemberDAO {
 		try {
 			getConnection();
 			
-			String sql = "UPDATE JEJU_MEMBER SET NAME = ?, PHONE = ?, Age  = ? WHERE ID = ? AND PW = ?";
+			String sql = "UPDATE JEJU_MEMBER SET PW=?, NAME = ?, Age  = ?, PHONE = ? WHERE ID = ?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1,dto.getName());
-			psmt.setString(2,dto.getPhone());
+			psmt.setString(1,dto.getPw());
+			psmt.setString(2,dto.getName());
 			psmt.setString(3,dto.getAge());
-			psmt.setString(4,dto.getId());
-			psmt.setString(5,dto.getPw());
+			psmt.setString(4,dto.getPhone());
+			psmt.setString(5,dto.getId());
+			
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	public int delete(String id) {
+
+		int cnt = 0;
+		
+		try {
+			getConnection();
+			
+			String sql = "DELETE FROM JEJU_MEMBER WHERE ID = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,id);
 			
 			cnt = psmt.executeUpdate();
 

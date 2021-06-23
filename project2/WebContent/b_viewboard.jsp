@@ -1,42 +1,159 @@
+<%@page import="com.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-		<title>Forty by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/board.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	<title>게시글│JEJUGo</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	
+	<style>
+		
+		a {
+			-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+			-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+			-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+			border-bottom-color: transparent;
+			color: #777;
+			text-decoration: none;
+		}
+		a:hover {
+			border-bottom: dotted 1px;
+		}
+	
+		#btn1, #btn2, #btn3{
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border: 1px solid #ADACAC;
+			background-color:#ADACAC;
+			color : white;
+			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
+		}
+		#btn1:hover, #btn2:hover, #btn3:hover{
+			border: 1px solid #F97B5A;
+			background-color:#F97B5A ;
+			color : white;
+			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
+		}
+		#btn1:active, #btn2:active, #btn3:active {
+			border: 1px solid #E9E8E7;
+			background-color:#F97B5A ;
+			color : white;
+			position: relative;
+			box-shadow: 0px 0px 0 rgb(0,0,0,0.5);
+		}
+	
+		img{
+			width: 200px;
+			height: 260px;
+			object-fit: cover;
+		}
+		
+		td{
+			width : 33%;
+		}
+	</style>
 </head>
-<body>
-			<div id = "board">
-				<table id="list">
-					<tr>
-						<td>TITLE</td>
-						<td><%-- 게시글 제목 출력 --%></td>
-					</tr>
-					<tr>
-						<td>WRITER</td>
-						<td><%-- 게시글 작성자 출력 --%></td>
-					</tr>
-					<tr>
-						<td>CONTENT</td>
-					</tr>
-					<tr>
-						<td>
-							<%-- 게시글 이미지와 내용 출력 --%>
-						</td>
-					</tr>
-					<tr>
-						<td align="center"><a href="b_boardmain.jsp"><button>뒤로가기</button></a></td>
-					</tr>
+
+<body class="is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<%
+			MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
+		%>
+		<header id="header">
+			<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index.jsp">Home</a></li>
+					<li>
+						<a href="#" class="icon solid fa-angle-down">MENU</a>
+						<ul>
+							<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
+								
+							<%	if(info!=null){ %>
+								<li><a href="l_mypage.jsp">mypage</a></li>
+							<%	}else{ %>
+								<li><a href="b_boardmain.jsp">mypage</a>
+									<ul>
+										<li><a href="signin.jsp">sign in please</a></li>
+									</ul>
+								</li>
+							<%	} %>
+									
+							<li><a href="b_viewboard.jsp">top</a></li>
+						</ul>
+					</li>
+					<%	if(info == null){ 	%>
+						<!-- 로그인 안했을때 -->
+						<li><a href="signin.jsp" class="button primary">Sing In</a></li>
+						<li><a href="signup.jsp" class="button">Sign Up</a></li>
+					<%	}else{ %>	
+						<li><a href="signoutService" class="button">Sign Out</a></li>
+					<%	} %>
+				</ul>
+			</nav>
+		</header>
+				
+		<!-- Main -->
+		<section id="main" class="container">		
+			<header>
+				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
+				<p>게시글</p>
+			</header>
+			<div id="board">
+			<form action="">
+				<table id = "list">
+					<tbody>
+					<% /*	
+						// ★수정필요★
+						ArrayList list = new ArrayList(); 
+						for(int i=0; i<list.size(); i++){ %>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><a href = ""><%= list.get(i).getTitle() %></a></td>
+							<td><%= list.get(i).getName() %></td>
+							<td><%= list.get(i).getDay() %></td>
+							<!--<td><a href = "MessageDeleteOne?num=<%= list.get(i).getNum()%>">삭제</td>-->
+						</tr>
+					<%	} */%>
+						<tr>
+							<td>제목</td>
+							<td><%-- 게시글 제목 출력 --%></td>
+						</tr>
+						<tr>
+							<td>작성자</td>
+							<td><%-- 게시글 작성자 출력 --%></td>
+						</tr>
+						<tr>	
+							<td>작성일</td>
+							<td><%-- 게시글 작성시간 출력 --%></td>
+						</tr>
+						<tr>
+							<td>내용</td>
+						</tr>
+						<tr>
+							<td>
+								<%-- 게시글 이미지와 내용 출력 --%>
+							</td>
+						</tr>
+					</tbody>
 				</table>
+			</form>
+			<a href = "b_boardmain.jsp"><button id = "btn1">뒤로가기</button></a>	
 			</div>
-			
+		</section>
+	</div>
+					
+						
+				
+
 			<!-- Footer -->
 			<footer id="footer">
 				<ul class="icons">
@@ -51,17 +168,17 @@
 					<li>&copy; djWaidle</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</footer>
-			
-			<!-- Scripts -->
+
+		
+
+		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-			
-			
-			
-</body>
+
+	</body>
 </html>

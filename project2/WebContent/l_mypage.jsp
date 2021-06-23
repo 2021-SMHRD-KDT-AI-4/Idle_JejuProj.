@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Generic - Alpha by HTML5 UP</title>
+	<title>마이페이지│JEJUGo</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -30,16 +30,16 @@
 							<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
 							
 							<%	if(info!=null){ %>
-								<li><a href="l_mypage.jsp">mypage</a></li>
+								<li><a href="l_mypage.jsp">Mypage</a></li>
 										
 							<%	}else{ %>
-								<li><a href="#">mypage</a>
+								<li><a href="#">Mypage</a>
 									<ul>
 										<li><a href="signin.jsp">sign in please</a></li>
 									</ul>
 								</li>
 							<%	} %>
-							<li><a href="l_mypage.jsp">top</a></li>
+							<li><a href="l_mypage.jsp">Top</a></li>
 						</ul>
 					</li>
 					<li><a href="signup.jsp" class="button">Sign Up</a></li>
@@ -50,71 +50,36 @@
 		<!-- Main -->
 		<section id="main" class="container">
 			<header>
-				<h2>mypage</h2>
-				<p>Just an assorted selection of elements.</p>
+				<h2>Mypage</h2>
 			</header>
 			<div class="row">
 				<div class="col-12">
 					<!-- Lists -->
 					<section class="box">
 						<h3>회원정보</h3>
-						<div class="row">
-							<div class="col-12 col-8-mobilep">
-								<h4 align = "center">아이디 님의 회원 정보 입니다.</h2>
-								<ul class="alt" align = "center">
-									<li><h4>이름   : </h3></li>
-									<li><h4>나이    : </h3></li>
-									<li><h4>연락처 : </h3></li>
-									<li><h4></h3></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-				</div>
-			</div>
-					
-			<div class="row">
-				<div class="col-12">
-
-					<!-- Form -->
-					<section class="box">
-						<h3>회원정보 수정 및 삭제</h3>
-						<h4>　　　　　　　　　　　　　</h4>
-						<form method="post" action="#">
-							<div class="row gtr-uniform gtr-50">
-								<div class="col-12 col-12-mobilep">
-									<input type="password" name="pw" id="pw" value="" placeholder="비밀번호를 입력하세요" />
-								</div>
-								<div class="col-12 col-12-mobilep">
-									<input type="text" name="name" id="name" value="" placeholder="이름을 입력하세요" />
-								</div>
-								<div class="col-12 col-12-mobilep">
-									<input type="text" name="age" id="age" value="" placeholder="나이를 입력하세요 (숫자만 입력)" />
-								</div>
-								<div class="col-12 col-12-mobilep">
-									<input type="text" name="phone" id="phone" value="" placeholder="연락처를 입력하세요 ('-'을 제외한 숫자만 입력)" />
-								</div>
-								
-								<div class="col-12">
-									<ul class="actions" >
-									<table bgcolor = "red">
-										<tr>
-											<td align = "left"><a href="#" class="button special small">회원정보 수정</a></td>
-											<td align = "left"></td>
-											<td align = "right"><a href="#" class="button alt small">회원정보 삭제</a></td>
-													
-										</tr>
-									</table>
-										
+					<form action="MypageUpdate" method="post">
+							<div class="row" align="right">
+								<div class="col-12 col-8-mobilep">
+									<h4 align = "center"><%=info.getId() %> 님의 회원 정보 입니다.</h2><br>
+									<ul class="alt" align = "center">
+										<li><h4>이름   : <%=info.getName() %></h3></li>
+										<li><h4>나이    : <%=info.getAge() %></h3></li>
+										<li><h4>연락처 : <%=info.getPhone() %></h3></li>
+										<li><h4></h3></li>
 									</ul>
-								</div>
+									<a href="l_update.jsp" class="button special small">회원정보 수정</a>
+									
+									<input type="submit" name="sub" value="회원 탈퇴"  class="button alt small">
+									
+										
+								</div>	
 							</div>
 						</form>
 					</section>
+
 				</div>
 			</div>
-				
+
 		</section>
 
 		<!-- Footer -->

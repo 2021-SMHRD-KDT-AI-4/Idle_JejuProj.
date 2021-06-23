@@ -4,92 +4,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Generic - Alpha by HTML5 UP</title>
+	<title>게시판│JEJUGo</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	
+	<style>
+		
+		a {
+		-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		border-bottom-color: transparent;
+		color: #777;
+		text-decoration: none;
+		}
+		a:hover {
+			border-bottom: dotted 1px;
+		}
+	
+		#btn1, #btn2, #btn3{
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border: 1px solid #ADACAC;
+			background-color:#ADACAC;
+			color : white;
+			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
+		}
+		#btn1:hover, #btn2:hover, #btn3:hover{
+			border: 1px solid #F97B5A;
+			background-color:#F97B5A ;
+			color : white;
+			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
+		}
+		#btn1:active, #btn2:active, #btn3:active {
+			border: 1px solid #E9E8E7;
+			background-color:#F97B5A ;
+			color : white;
+			position: relative;
+			box-shadow: 0px 0px 0 rgb(0,0,0,0.5);
+		}
+	
+		img{
+			width: 200px;
+			height: 260px;
+			object-fit: cover;
+		}
+		
+		table { table-layout:fixed; }
+		
+	</style>
 </head>
 <body class="is-preload">
-		<div id="page-wrapper">
+	<div id="page-wrapper">
 
-			<!-- Header -->
-			<%
-				MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
-			%>
-				<header id="header">
-					<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
-					<nav id="nav">
+		<!-- Header -->
+		<%
+			MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
+		%>
+		<header id="header">
+			<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index.jsp">Home</a></li>
+					<li>
+						<a href="#" class="icon solid fa-angle-down">MENU</a>
 						<ul>
-							<li><a href="index.jsp">Home</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">MENU</a>
-								<ul>
-									<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
-									<li>
-										<a href="#">Bookmark</a>
-										<ul>
-										<%	if(info == null){ %>
-											<li><a href="signin.jsp">sign in please</a></li>
-										<%	}else{ %>
-											<li><a href="l_bookmark_de.jsp">Destination</a></li>
-											<li><a href="l_bookmark_re.jsp">Restaurant</a></li>
-											<li><a href="l_bookmark_ca.jsp">Cafe</a></li>
-										<%	} %>	
-										</ul>
-									</li>
-									<li><a href="l_bookmark_ca.jsp">Top</a></li>
-								</ul>
-							</li>
-							<%	if(info == null){ 	%>
-								<!-- 로그인 안했을때 -->
-									<li><a href="signin.jsp" class="button primary">Sing In</a></li>
-									<li><a href="signup.jsp" class="button">Sign Up</a></li>
-							<%	}else{ %>	
-									<li><a href="signoutService" class="button">Sign Out</a></li>
+							<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
+								
+							<%	if(info!=null){ %>
+								<li><a href="l_mypage.jsp">mypage</a></li>
+							<%	}else{ %>
+								<li><a href="#">mypage</a>
+									<ul>
+										<li><a href="signin.jsp">sign in please</a></li>
+									</ul>
+								</li>
 							<%	} %>
+									
+							<li><a href="b_boardmain.jsp">top</a></li>
 						</ul>
-					</nav>
-				</header>
-
-			
-						
-						<h3>게시글 </h3>
-						<div id="board">
-							<table id = "list">
-								<thead>
-									<tr>
-										<th>NUMBER</th>
-										<th>TITLE</th>
-										<th>CONTENT</th>
-										<th>TIME</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a href = "b_viewboard.jsp">1</a></td>
-										<td>여행계획</td>
-										<td>너무좋군</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><a href = "b_viewboard.jsp">2</a></td>
-										<td>여행계획1</td>
-										<td>너무좋군1</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><a href = "b_viewboard.jsp">3</a></td>
-										<td>여행계획2</td>
-										<td>너무좋군2</td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-							<a href="b_writeboard.jsp"><button align ="center" id="writer">작성하러가기</button></a>
-						</div>
-					</div>
+					</li>
+					<%	if(info == null){ 	%>
+						<!-- 로그인 안했을때 -->
+							<li><a href="signin.jsp" class="button primary">Sing In</a></li>
+							<li><a href="signup.jsp" class="button">Sign Up</a></li>
+					<%	}else{ %>	
+							<li><a href="signoutService" class="button">Sign Out</a></li>
+					<%	} %>
+				</ul>
+			</nav>
+		</header>
+				
+		<!-- Main -->
+		<section id="main" class="container">		
+			<header>
+				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
+				<p>게시판</p>
+			</header>
+			<div id="board">
+			<table id = "list">
+				<thead>
+					<tr>
+						<th width = "8%" align = "center">번호</th>
+						<th width = "52%" align = "center">제목</th>
+						<th width = "25%" align = "center">작성자</th>
+						<th width = "25%" align = "center">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+				
+				
+				<% /*	
+					// ★수정필요★
+					ArrayList list = new ArrayList(); 
+					for(int i=0; i<list.size(); i++){ %>
+					<tr>
+						<td><%= i+1 %></td>
+						<td><a href = "b_viewboard.jsp"><%= list.get(i).getTitle() %></a></td>
+						<td><%= list.get(i).getName() %></td>
+						<td><%= list.get(i).getDay() %></td>
+						<!--<td><a href = "MessageDeleteOne?num=<%= list.get(i).getNum()%>">삭제</td>-->
+					</tr>
+				<%	} */%>
+					<tr>
+						<td width = "8%" >1</td>
+						<td width = "52%"><a href = "b_viewboard.jsp">이것은 제목이다</td>
+						<td width = "25%">작성자</td>
+						<td width = "25%">2021/06/21</td>
+					</tr>
+				
+				</tbody>
+			</table>
+			<a href="b_writeboard.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
+		</div>
+	</div>
 					
-						
+			</section>			
 				
 
 			<!-- Footer -->

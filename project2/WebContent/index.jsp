@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Alpha by HTML5 UP</title>
+	<title>JEJUGo│제주 여행메이트</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -23,7 +23,7 @@
 			width: 500px;
 			height: 500px; 
 			box-shadow: 0 0 10px rgba(0,0,0,0.5);
-			background : #e89980;
+			background : #FFFFF5; 
 			border-radius: 5px;
 			text-align: right;
 			padding: 20px;
@@ -33,7 +33,7 @@
 			
 		}
 		td{
-			background: #e89980;
+			background: #FFFFF8;
 			color: black;
 		}
 		
@@ -126,7 +126,7 @@
 			<!-- Banner -->
 				<section id="banner">
 					<h2>JEJUGo</h2>
-					<p>대충 제주 관광을 도와준다는 글 길이는 이정도로로</p>
+					<p>당신의 든든한 여행 메이트. 함께가요 제주도</p>
 					<ul class="actions special">
 					<!-- <li><a href="signin.jsp" class="button primary">Sing In</a></li> -->	
 											
@@ -166,8 +166,8 @@
 										</td>
 									</tr>
 									<tr align="center">
-										<td bgcolor='#e89980'>
-											<input type="submit" value="확인">
+										<td bgcolor=white;>
+											<input type="submit" value="확인" style="background-color: gray;">
 										</td>
 									</tr>
 								</table>
@@ -183,11 +183,16 @@
 
 					<section class="box special">
 						<header class="major">
-							<h2>yeongEoro meosin neun mal sseonoki
+							<h2>내 주변의 좋은 관광지 및 음식점을 
 							<br />
-							제주도 원해요!!!?</h2>
-							<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-							adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+							지금 확인해 보세요</h2>
+							<p><%	if(info == null){ 	%>
+								<!-- 로그인 안했을때 -->
+									로그인을 해주세요.
+							<%	}else{ %>	
+									<%= info.getName() %>님의 현재 위치입니다
+							<%	} %>
+							</p>
 						</header>
 					
 						
