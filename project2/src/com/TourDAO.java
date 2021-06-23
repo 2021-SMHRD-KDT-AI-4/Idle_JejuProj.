@@ -122,13 +122,148 @@ public class TourDAO {
 		}
 		return recommend;
 	}
+	
+	public ArrayList<TourDTO> res(ArrayList<String> visited_res, Double lat1, Double lon1) {
+		
+		
+		ArrayList<TourDTO> restaurant = new ArrayList<TourDTO>();
+		getConnection();
+		try {
+			// 태그 지정
+			String sql = "SELECT * FROM J_RESTAURANT ";
+			
+			psmt = conn.prepareStatement(sql);
+		
+			rs = psmt.executeQuery();
+			
+			// 방문 지역 제외
+			
+			while (rs.next()) {
+				String name = rs.getString("NAME");
+			
+				if(visited_res.isEmpty()){
+					name = rs.getString("NAME");
+				}else {
+					for (int i = 0; i < visited_res.size(); i++) {
+						if (visited_res.get(i).equals(name)) {
+							name = null;
+						}
+					}
+				}
+			
+				String tInfo = rs.getString("info");
+				String addr = rs.getNString("addr");
+				String img = rs.getString("img");
+				Double lat2 = rs.getDouble("LAT");
+				Double lon2 = rs.getDouble("LONGI");
+				
+				// 거리 계산 공식
+				double theta = lon1 - lon2;
+				double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+				
+				dist = Math.acos(dist);
+				dist = rad2deg(dist);
+				dist = dist * 60 * 1.1515;
+				dist = dist*1.609344;
+				
+				// 거리 조절
+				if (dist >= 5.0 && dist <= 10.0) {
+					
+					if (name != null) {
+						distdto = new TourDTO(name, tInfo, addr, img, lat2, lon2, dist);
+						restaurant.add(distdto);
+					}else {
+						continue;
+					}
+					
+					
+				}
+			}
+			// DTO 정렬
+			restaurant = (ArrayList<TourDTO>) restaurant.stream().sorted(Comparator.comparing(TourDTO::getCal)).collect(Collectors.toList());
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return restaurant;
+	}
+
+
+	public ArrayList<TourDTO> cafe(ArrayList<String> visited_cafe, Double lat1, Double lon1) {
+		
+		
+		ArrayList<TourDTO> r_cafe = new ArrayList<TourDTO>();
+		getConnection();
+		try {
+			// 태그 지정
+			String sql = "SELECT * FROM J_CAFE ";
+		
+			psmt = conn.prepareStatement(sql);
+		
+			rs = psmt.executeQuery();
+			
+		
+			while (rs.next()) {
+				String name = rs.getString("NAME");
+				
+				if(visited_cafe.isEmpty()){
+					name = rs.getString("NAME");
+				}else {
+					for (int i = 0; i < visited_cafe.size(); i++) {
+						if (visited_cafe.get(i).equals(name)) {
+							name = null;
+						}
+					}
+				}
+				
+				String tInfo = rs.getString("info");
+				String addr = rs.getNString("addr");
+				String img = rs.getString("img");
+				Double lat2 = rs.getDouble("LAT");
+				Double lon2 = rs.getDouble("LONGI");
+				
+				// 거리 계산 공식
+				double theta = lon1 - lon2;
+				double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+				
+				dist = Math.acos(dist);
+				dist = rad2deg(dist);
+				dist = dist * 60 * 1.1515;
+				dist = dist*1.609344;
+				
+				// 거리 조절
+				if (dist >= 5.0 && dist <= 10.0) {
+				
+					if (name != null) {
+						distdto = new TourDTO(name, tInfo, addr, img, lat2, lon2, dist);
+						r_cafe.add(distdto);
+					}else {
+						continue;
+					}
+					
+				}
+			}
+			// DTO 정렬
+			r_cafe = (ArrayList<TourDTO>) r_cafe.stream().sorted(Comparator.comparing(TourDTO::getCal)).collect(Collectors.toList());
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return r_cafe;
+	}
+	
 
 	public ArrayList<TourDTO> mymap(ArrayList<String> visited) {
 		getConnection();
 		ArrayList<TourDTO> visited_info = new ArrayList<TourDTO>();
 		
 		try {
-			String sql = "SELECT * FROM J_SIGHT WHERE ";
+			
+			String sql = "SELECT * FROM J_SIGHT WHERE";
 			for (int i = 0; i < visited.size(); i++) {
 				sql += "NAME = ? ";
 				if (i != visited.size()-1) {
