@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -63,7 +64,7 @@
 
 		<!-- Header -->
 		<%
-			MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
+				MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
 		%>
 		<header id="header">
 			<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
@@ -139,7 +140,13 @@
 				
 				</tbody>
 			</table>
-			<a href="b_writeboard.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
+				<% if(info == null) { %>
+					<a href="b_boardmain.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
+					<script> alert("로그인 후 이용해주세요"); </script>
+					
+				<% } else {%>
+					<a href="b_writeboard.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
+				<% } %>
 		</div>
 	</div>
 					
@@ -171,6 +178,10 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			</script>
+
+
 
 	</body>
 </html>

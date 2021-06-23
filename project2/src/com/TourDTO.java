@@ -16,8 +16,14 @@ public class TourDTO {
 	private double lon;
 	private double cal;
 	
-
-	
+	public TourDTO(String name, String info, String addr, Double lat, Double lon) {
+		super();
+		this.name = name;
+		this.info = info;
+		this.addr = addr;
+		this.lat = lat;
+		this.lon = lon;
+	}
 	public TourDTO(String name, String info, String addr, String img, double lat, double lon, double cal) {
 		this.name = name;
 		this.info = info;

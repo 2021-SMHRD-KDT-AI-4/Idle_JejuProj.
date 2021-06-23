@@ -24,6 +24,8 @@ public class Choice extends HttpServlet {
 		HttpSession session = request.getSession();
 		ArrayList<TourDTO> recommend = (ArrayList)session.getAttribute("recommend");
 		ArrayList<String> visited = (ArrayList)session.getAttribute("visited");
+		ArrayList<String> visited_res = (ArrayList)session.getAttribute("visited_res");
+		ArrayList<String> visited_cafe = (ArrayList)session.getAttribute("visited_cafe");
 		TourInfoDTO loc =  (TourInfoDTO)session.getAttribute("loc");
 		
 		int index = Integer.parseInt(request.getParameter("index"));
@@ -33,9 +35,10 @@ public class Choice extends HttpServlet {
 		loc = new TourInfoDTO(lat, lon);
 
 		visited.add(recommend.get(index).getName());
-
 		session.setAttribute("loc", loc);
 		session.setAttribute("visited", visited);
+		session.setAttribute("visited_res", visited_res);
+		session.setAttribute("visited_cafe", visited_cafe);
 		response.sendRedirect("index.jsp");
 	}
 
