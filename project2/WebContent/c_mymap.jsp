@@ -196,14 +196,10 @@
 										</div>
 									</td>
 								</tr>
-								
 							</table>
 						</form>
-						
-						
 					</div>
 				</section>
-
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="icons">

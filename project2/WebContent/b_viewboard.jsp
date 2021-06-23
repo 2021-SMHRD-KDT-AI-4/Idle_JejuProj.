@@ -111,6 +111,7 @@
 			<form action="">
 				<table id = "list">
 					<tbody>
+					<% %>
 					<% /*	
 						// ★수정필요★
 						ArrayList list = new ArrayList(); 
@@ -124,22 +125,24 @@
 						</tr>
 					<%	} */%>
 						<tr>
-							<td>제목</td>
-							<td><%-- 게시글 제목 출력 --%></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td><%-- 게시글 작성자 출력 --%></td>
+							<td style = "width: 20%;", align = "center">제목</td>
+							<td style = "width: 80%;", align = "center"><%-- 게시글 제목 출력 --%></td>
+							
 						</tr>
 						<tr>	
-							<td>작성일</td>
-							<td><%-- 게시글 작성시간 출력 --%></td>
+							<td style = "width: 20%;", align = "center">작성자</td>
+							<td style = "width: 80%;", align = "right"><%-- 게시글 작성자 출력 --%></td>
+						</tr>
+						<tr>	
+							<td style = "width: 20%;", align = "center" >작성일</td>
+							<td style = "width: 80%;", align = "right"><%-- 게시글 작성시간 출력 --%></td>
 						</tr>
 						<tr>
-							<td>내용</td>
+							<td colspan = "2" align = "center">내용</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>
+							<td colspan = "2">
 								<%-- 게시글 이미지와 내용 출력 --%>
 							</td>
 						</tr>

@@ -89,7 +89,7 @@
 				}
 			%>
 				<header id="header" class="alt">
-					<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
+					<h1>JEJUGo</a> by djWaidle</h1>
 					<nav id="nav">
 						<ul>
 							<li><a href="index.jsp">Home</a></li>
@@ -261,12 +261,8 @@
 								<p>내 주변 카페를 추천합니다.<br> 다리도 아픈데 쉬었다 가세요.</p>
 							</section>
 							<section>
-								 
-<!-- 						<span class="icon solid major fa-magic accent5"></span>
-							<h3><a href = "a_event.jsp">Event</h3></a>
-							<p>이벤트 어떻게 구현할지 집에서 생각해봐야겠다 하지만 난 오늘 치킨을 먹으며 야구를 볼 것이다. 친구집 옥상에서 벌써 설렌다희희. 이벤트 페이지 구현은 미래의 나에게 맡긴다 집 보내줘 칼퇴할래</p>
-							 -->
-								
+							<h5>　</h5>
+							<h2 style = "color: #8C8C8C; font-weight: bold;"><br>JEJUGo</h2>
 							</section>
 						</div>
 					</section>
@@ -275,7 +271,7 @@
 						<div class="col-6 col-12-narrower">
 
 							<section class="box special">
-								<span class="image featured"><img src="images/jeju_board.PNG" style="height: 250px;" alt="" /></span>
+								<span class="image featured"><img src="images/jeju_board.PNG" style=" height: 300px;" alt=""  /></span>
 								<h3>사용자 게시판</h3>
 								<p>다른 사용자들은 무슨 글을 남겼을까?</p>
 								<ul class="actions special">
@@ -287,7 +283,7 @@
 						<div class="col-6 col-12-narrower">
 
 							<section class="box special">
-								<span class="image featured"><img src="images/jeju_map.PNG" style="height: 250px;" alt="" /></span>
+								<span class="image featured"><img src="images/jeju_map.PNG" style="height: 300px;" alt="" /></span>
 								<h3>나만의 여행지도</h3>
 								<p>내가 다녀온 장소를 한 눈에 보자!</p>
 								<ul class="actions special">

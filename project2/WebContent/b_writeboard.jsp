@@ -99,15 +99,12 @@
 			<form action="b_boardmain.jsp">
 				<table id="list">
 					<tr>
-						<td>제목</td>
-						<td><input type="text" name="title"> </td>
+						<td style = "width: 20%;", align = "center">제목</td>
+						<td style = "width: 80%;"><input type="text" name="title"> </td>
 					</tr>
 					<tr>
-						<td>작성자</td>
-						<td><input type="text" name="writer"> </td>
-					</tr>
-					<tr>
-						<td colspan="2">내용</td>
+						<td style = "width: 20%;", align = "center">내용</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td colspan="2">
