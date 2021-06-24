@@ -117,32 +117,23 @@
 			<div id="board">
 				<table id = "list">
 					<tbody>
-
 						<tr>
-							<td>제목</td>
-							<td><%= vlist.getTitle() %></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td><%= vlist.getId() %></td>
 							<td style = "width: 20%;", align = "center">제목</td>
-							<td style = "width: 80%;", align = "center"><%-- 게시글 제목 출력 --%></td>
-							
+							<td style = "width: 80%;", align = "center"><%= vlist.getTitle() %></td>
 						</tr>
 						<tr>	
 							<td style = "width: 20%;", align = "center">작성자</td>
-							<td style = "width: 80%;", align = "right"><%-- 게시글 작성자 출력 --%></td>
+							<td style = "width: 80%;", align = "right"><%= vlist.getId() %></td>
 						</tr>
 						<tr>	
 							<td style = "width: 20%;", align = "center" >작성일</td>
-							<td style = "width: 80%;", align = "right"><%-- 게시글 작성시간 출력 --%></td>
+							<td style = "width: 80%;", align = "right"><%= vlist.getDay() %></td>
 						</tr>
 						<tr>
 							<td colspan = "2" align = "center">내용</td>
-							<td></td>
 						</tr>
 						<tr>
-							<td>
+							<td style = "height: 300px;">
 								<%= vlist.getContent() %>
 							<td colspan = "2">
 								<%-- 게시글 이미지와 내용 출력 --%>
@@ -154,9 +145,6 @@
 			</div>
 		</section>
 	</div>
-					
-						
-				
 
 			<!-- Footer -->
 			<footer id="footer">
@@ -173,8 +161,6 @@
 				</ul>
 			</footer>
 
-		
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -183,6 +169,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
