@@ -108,8 +108,8 @@
 			<!-- Main -->
 				<section id="main" class="container">
 					<header>
-						<a href = "a_restaurant.jsp"><h2>SIGHTS</h2></a>
-						<p>주변에 이런 관광지가 있네요~</p>
+						<a href = "a_restaurant.jsp"><h2>RESTAURANT</h2></a>
+						<p>주변에 이런 음식점이 있네요~</p>
 					</header>
 					<div class="box">
 						<span id = "map" class="image featured"><img src="images/pic01.jpg" alt="" /></span>
