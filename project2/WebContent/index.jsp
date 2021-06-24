@@ -19,7 +19,7 @@
 			left: 50%; 
 			top: 50%;
 			z-index: -1;
-			transform: translate(-50%,-85%);
+			transform: translate(-50%,-75%);
 			width: 500px;
 			height: 500px; 
 			box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -130,7 +130,6 @@
 					<p>당신의 든든한 여행 메이트. 함께가요 제주도</p>
 					<ul class="actions special">
 					<!-- <li><a href="signin.jsp" class="button primary">Sing In</a></li> -->	
-									
 							
 						<script>
 							function btnno() {
@@ -138,6 +137,9 @@
 							}
 							function tagbtnyes() {
 								location.href="#check_tag";
+							}
+							function tag_infoNo() {
+								alert("태그 설정 후 이용해주세요");
 							}
 						</script>
 						
@@ -260,7 +262,9 @@
 						<div class="features-row">
 							<%if(info==null){ %>
 								<section onclick = "btnno()">
-							<%}else{ %>
+							<% } else if(tag_info == null) { %>
+								<section onclick = "tag_infoNo()">
+							<% }else{ %>
 								<section onclick = "location.href='RecommendDist'">		
 							<%} %>
 									<span class="icon solid major fa-map accent2"></span>
@@ -270,6 +274,8 @@
 							
 							<%if(info==null){ %>
 								<section onclick = "btnno()">
+							<% } else if(tag_info == null) { %>
+								<section onclick = "tag_infoNo()">
 							<%}else{ %>
 									<section onclick = "location.href='RecommendRes'">
 							<%} %>
@@ -281,6 +287,8 @@
 						<div class="features-row">
 						<%if(info==null){ %>
 							<section onclick = "btnno()">
+						<% } else if(tag_info == null) { %>
+								<section onclick = "tag_infoNo()">
 						<%}else{ %>
 							<section onclick = "location.href='RecommendCafe'">
 						<%} %>

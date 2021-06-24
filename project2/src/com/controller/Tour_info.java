@@ -31,7 +31,10 @@ public class Tour_info extends HttpServlet {
 		Double lon = 126.49125683810726;
 		
 		TourInfoDTO loc = new TourInfoDTO(lat, lon);
-		TourInfoDTO tag_info = new TourInfoDTO(tag, day, people);
+		TourInfoDTO tag_info = null;
+		if (tag != null && people != null && day != null) {
+			tag_info = new TourInfoDTO(tag, day, people);
+		}
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("visited", visited);
