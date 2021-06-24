@@ -82,7 +82,6 @@
 				ArrayList<String> visited = (ArrayList)session.getAttribute("visited");
 				ArrayList<String> visited_res = (ArrayList)session.getAttribute("visited_res");
 				ArrayList<String> visited_cafe = (ArrayList)session.getAttribute("visited_cafe");
-				
 				Double gps_lat = 33.510650537434664;
 				Double gps_lon = 126.49125683810726;
 				if(loc != null) {

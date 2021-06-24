@@ -96,23 +96,19 @@
 				<p>게시글 작성</p>
 			</header>
 			<div id = "board">
-			<form action="b_boardmain.jsp">
+			<form action="WriteBoard" method="post">
 				<table id="list">
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="title"> </td>
-					</tr>
-					<tr>
-						<td>작성자</td>
-						<td><input type="text" name="writer"> </td>
+						<td><input type="text" name="title"></td>
 					</tr>
 					<tr>
 						<td colspan="2">내용</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="file" style="float: right;">
-							<textarea rows="10" style="resize: none;"></textarea>			
+							<input type="file" style="float: right;" name = "img">
+							<textarea rows="10" style="resize: none;" name = "content"></textarea>			
 						</td>
 					</tr>
 					<tr>

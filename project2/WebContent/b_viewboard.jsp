@@ -1,3 +1,5 @@
+<%@page import="com.BoardDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -107,45 +109,36 @@
 				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
 				<p>게시글</p>
 			</header>
+			
+			<%
+				BoardDTO vlist = (BoardDTO)session.getAttribute("vlist");
+			%>
+			
 			<div id="board">
-			<form action="">
 				<table id = "list">
 					<tbody>
-					<% /*	
-						// ★수정필요★
-						ArrayList list = new ArrayList(); 
-						for(int i=0; i<list.size(); i++){ %>
-						<tr>
-							<td><%= i+1 %></td>
-							<td><a href = ""><%= list.get(i).getTitle() %></a></td>
-							<td><%= list.get(i).getName() %></td>
-							<td><%= list.get(i).getDay() %></td>
-							<!--<td><a href = "MessageDeleteOne?num=<%= list.get(i).getNum()%>">삭제</td>-->
-						</tr>
-					<%	} */%>
 						<tr>
 							<td>제목</td>
-							<td><%-- 게시글 제목 출력 --%></td>
+							<td><%= vlist.getTitle() %></td>
 						</tr>
 						<tr>
 							<td>작성자</td>
-							<td><%-- 게시글 작성자 출력 --%></td>
+							<td><%= vlist.getId() %></td>
 						</tr>
 						<tr>	
 							<td>작성일</td>
-							<td><%-- 게시글 작성시간 출력 --%></td>
+							<td><%= vlist.getDay() %></td>
 						</tr>
 						<tr>
 							<td>내용</td>
 						</tr>
 						<tr>
 							<td>
-								<%-- 게시글 이미지와 내용 출력 --%>
+								<%= vlist.getContent() %>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			</form>
 			<a href = "b_boardmain.jsp"><button id = "btn1">뒤로가기</button></a>	
 			</div>
 		</section>

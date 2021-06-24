@@ -177,8 +177,8 @@
 					var jsonObj = JSON.parse(jsonStr);
 					console.log(jsonObj[1]['name']);
 					
-					
 					var size = <%= visited_info.size() %>;
+					
    					var positions = [{title :jsonObj[0]['name'], latlng:new kakao.maps.LatLng(jsonObj[0]['lat'], jsonObj[0]['lon'])}];
    					for (var i = 1; i < size; i++) {
 						positions[i] = (

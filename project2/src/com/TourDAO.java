@@ -260,13 +260,13 @@ public class TourDAO {
 	public ArrayList<TourDTO> mymap(ArrayList<String> visited) {
 		getConnection();
 		ArrayList<TourDTO> visited_info = new ArrayList<TourDTO>();
-		
+		System.out.println(visited.size());
 		try {
 			
-			String sql = "SELECT * FROM J_SIGHT WHERE";
+			String sql = "SELECT * FROM J_SIGHT WHERE ";
 			for (int i = 0; i < visited.size(); i++) {
 				sql += "NAME = ? ";
-				if (i != visited.size()-1) {
+				if (i != (visited.size()-1)) {
 					sql += " OR ";
 				}
 			}
@@ -289,6 +289,8 @@ public class TourDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return visited_info;
 	}

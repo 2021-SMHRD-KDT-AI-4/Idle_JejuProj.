@@ -1,3 +1,6 @@
+<%@page import="com.BoardDTO"%>
+<%@page import="com.BoardDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -117,39 +120,37 @@
 					</tr>
 				</thead>
 				<tbody>
-				
-				
-				<% /*	
-					// ★수정필요★
-					ArrayList list = new ArrayList(); 
-					for(int i=0; i<list.size(); i++){ %>
+				<% 
+					BoardDAO bdao = new BoardDAO();
+					ArrayList<BoardDTO> blist = bdao.selectAll();
+					for(int i = 0; i<blist.size(); i++) {
+				%>
 					<tr>
-						<td><%= i+1 %></td>
-						<td><a href = "b_viewboard.jsp"><%= list.get(i).getTitle() %></a></td>
-						<td><%= list.get(i).getName() %></td>
-						<td><%= list.get(i).getDay() %></td>
-						<!--<td><a href = "MessageDeleteOne?num=<%= list.get(i).getNum()%>">삭제</td>-->
+						<td width = "8%" ><%= i+1 %></td>
+						<td width = "52%"><a href = "viewBoard?num=<%= i+1 %>"><%= blist.get(i).getTitle() %></a></td>
+						<td width = "25%"><%= blist.get(i).getId() %></td>
+						<td width = "25%"><%= blist.get(i).getDay() %></td>
 					</tr>
-				<%	} */%>
-					<tr>
-						<td width = "8%" >1</td>
-						<td width = "52%"><a href = "b_viewboard.jsp">이것은 제목이다</td>
-						<td width = "25%">작성자</td>
-						<td width = "25%">2021/06/21</td>
-					</tr>
-				
+				<% } %>
 				</tbody>
 			</table>
+			<script>
+				function writeBtnN(){
+					alert("로그인 후 이용해 주세요");
+				}
+				function writeBtnY(){
+					window.location.href="b_writeboard.jsp";
+				}
+			</script>
+		
 				<% if(info == null) { %>
-					<script> alert("로그인 후 이용해주세요"); </script>
-					<a href="b_boardmain.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
-				<% } else {%>
-					<a href="b_writeboard.jsp"><button id = "btn1" align ="right" id="writer">작성하기</button></a>
-				<% } %>
-		</div>
+					<button id = "btn1" align ="right" onclick="writeBtnN()">작성하기</button>
+				<% }else { %>
+					<button id = "btn1" align ="right" onclick="writeBtnY()">작성하기</button>
+				<%} %>
+			</div>
+		</section>		
 	</div>
-					
-			</section>			
 				
 
 			<!-- Footer -->
@@ -177,8 +178,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
-			</script>
+			
 
 
 
