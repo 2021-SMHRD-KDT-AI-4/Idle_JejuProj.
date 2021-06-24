@@ -99,11 +99,12 @@
 			<form action="WriteBoard" method="post">
 				<table id="list">
 					<tr>
-						<td>力格</td>
-						<td><input type="text" name="title"></td>
+						<td style = "width: 20%;", align = "center">力格</td>
+						<td style = "width: 80%;"><input type="text" name="title"> </td>
 					</tr>
 					<tr>
-						<td colspan="2">郴侩</td>
+						<td style = "width: 20%;", align = "center">郴侩</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td colspan="2">

@@ -1,4 +1,4 @@
-<%@page import="com.TourDTO"%>
+ <%@page import="com.TourDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.TourInfoDTO"%>
 <%@page import="com.MemberDTO"%>
@@ -79,6 +79,9 @@
 									<%	if(info!=null){ %>
 										<li><a href="l_mypage.jsp">mypage</a></li>
 										
+
+							<li><a href="a_restaurant.jsp">top</a></li>
+
 									<%	}else{ %>
 										<li><a href="#">mypage</a>
 											<ul>
@@ -97,6 +100,7 @@
 							<%	}else{ %>	
 									<li><a href="signoutService" class="button">Sign Out</a></li>
 							<%	} %>
+
 						</ul>
 					</nav>
 				</header>
@@ -104,8 +108,8 @@
 			<!-- Main -->
 				<section id="main" class="container">
 					<header>
-						<a href = "a_restaurant.jsp"><h2>SIGHTS</h2></a>
-						<p>주변에 이런 관광지가 있네요~</p>
+						<a href = "a_restaurant.jsp"><h2>RESTAURANT</h2></a>
+						<p>주변에 이런 음식점이 있네요~</p>
 					</header>
 					<div class="box">
 						<span id = "map" class="image featured"><img src="images/pic01.jpg" alt="" /></span>

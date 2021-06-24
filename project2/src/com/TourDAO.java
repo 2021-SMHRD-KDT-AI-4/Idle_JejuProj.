@@ -267,6 +267,7 @@ public class TourDAO {
 			for (int i = 0; i < visited.size(); i++) {
 				sql += "NAME = ? ";
 				if (i != (visited.size()-1)) {
+
 					sql += " OR ";
 				}
 			}
@@ -274,6 +275,7 @@ public class TourDAO {
 			for (int i = 0; i < visited.size(); i++) {
 				psmt.setString(i+1, visited.get(i));
 			}
+			
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {

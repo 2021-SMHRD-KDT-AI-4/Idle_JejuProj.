@@ -172,21 +172,26 @@
 					        latlng: new kakao.maps.LatLng(<%= recommend.get(2).getLat() %>, <%= recommend.get(2).getLon() %>)
 					    }
 					]; --%>
+					
 					var jsonStr = ('<%= json %>');
 					console.log(jsonStr);
 					var jsonObj = JSON.parse(jsonStr);
-					console.log(jsonObj[1]['name']);
+					console.log(jsonObj[0]['name']);
 					
 					var size = <%= visited_info.size() %>;
 					
    					var positions = [{title :jsonObj[0]['name'], latlng:new kakao.maps.LatLng(jsonObj[0]['lat'], jsonObj[0]['lon'])}];
-   					for (var i = 1; i < size; i++) {
-						positions[i] = (
-								{title : jsonObj[i]['name'],
-								latlng:new kakao.maps.LatLng(jsonObj[i]['lat'], jsonObj[i]['lon'])
-								})
-						/* positions.latlng = new kakao.maps.LatLng(33.48945642595957, 126.6839924371252); */
-					}
+   					
+   					if(size!=0){
+	   					for (var i = 1; i < size; i++) {
+							
+	   						positions[i] = (
+									{title : jsonObj[i]['name'],
+									latlng:new kakao.maps.LatLng(jsonObj[i]['lat'], jsonObj[i]['lon'])
+									})
+							/* positions.latlng = new kakao.maps.LatLng(33.48945642595957, 126.6839924371252); */
+						}
+   					}
 					console.log(positions)
 					// 마커 이미지의 이미지 주소
 					var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -295,6 +300,7 @@
 									<td>주소</td>
 									<td>정보</td>
 								</tr>
+
 								<% for(int i =0; i<visited_info.size(); i++) { %>
 									<tr align = "center">
 										<td><%= visited_info.get(i).getName() %></td>
@@ -302,13 +308,11 @@
 										<td><%= visited_info.get(i).getInfo() %></td>
 									</tr>
 								<% } %>
+
 							</table>
 						</form>
-						
-						
 					</div>
 				</section>
-
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="icons">

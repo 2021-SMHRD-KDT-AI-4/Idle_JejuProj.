@@ -35,7 +35,6 @@ public class Choice extends HttpServlet {
 		loc = new TourInfoDTO(lat, lon);
 
 		visited.add(recommend.get(index).getName());
-
 		session.setAttribute("loc", loc);
 		session.setAttribute("visited", visited);
 		session.setAttribute("visited_res", visited_res);

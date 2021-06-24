@@ -90,7 +90,7 @@
 				}
 			%>
 				<header id="header" class="alt">
-					<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
+					<h1>JEJUGo</a> by djWaidle</h1>
 					<nav id="nav">
 						<ul>
 							<li><a href="index.jsp">Home</a></li>
@@ -110,7 +110,7 @@
 										</li>
 									<%	} %>
 										
-									<li><a href="#">top</a></li>
+									<li><a href="index.jsp">top</a></li>
 								</ul>
 							</li>
 							<%	if(info == null){ 	%>
@@ -130,9 +130,22 @@
 					<p>당신의 든든한 여행 메이트. 함께가요 제주도</p>
 					<ul class="actions special">
 					<!-- <li><a href="signin.jsp" class="button primary">Sing In</a></li> -->	
-											
-						<li><a href="#check_tag" class="button primary" id="primary">태그 설정</a></li>
+									
+							
+						<script>
+							function btnno() {
+								alert("로그인 후 이용해주세요.");
+							}
+							function tagbtnyes() {
+								location.href="#check_tag";
+							}
+						</script>
 						
+					<%if(info==null){ %>
+						<li onclick="btnno()"><a class="button primary" id="primary">태그 설정</a ></li>
+					<%}else{ %>
+						<li onclick="tagbtnyes()"><a class="button primary" id="primary">태그 설정</a ></li>
+					<%} %>
 						<form action="Tour_info" method="post">
 							<div id="check_tag" class="check">	
 								
@@ -176,8 +189,9 @@
 						</form>
 							<div class="dim"></div>
 					</ul>
+				
 				</section>
-
+						
 
 			<!-- Main -->
 				<section id="main" class="container">
@@ -244,30 +258,39 @@
 
 					<section class="box special features">
 						<div class="features-row">
-							<section onclick = "location.href='RecommendDist'">
-								<span class="icon solid major fa-map accent2"></span>
-								<h3>SIGHTS</h3></a>
-								<p>내 주변 관광지를 추천합니다.<br>근처에 가볼만 한 곳이 어디 있을까요?</p>
-							</section>
-							<section onclick = "location.href='RecommendRes'">
-								<span class="icon solid major fa-drumstick-bite accent3"></span>
-								<h3>Restaurant</h3></a>
-								<p>내 주변 음식점을 추천합니다.<br>출출하지 않나요?근처에서 식사 하고 가세요.</p>
-							</section>
+							<%if(info==null){ %>
+								<section onclick = "btnno()">
+							<%}else{ %>
+								<section onclick = "location.href='RecommendDist'">		
+							<%} %>
+									<span class="icon solid major fa-map accent2"></span>
+									<h3>SIGHTS</h3></a>
+									<p>내 주변 관광지를 추천합니다.<br>근처에 가볼만 한 곳이 어디 있을까요?</p>
+								</section>
+							
+							<%if(info==null){ %>
+								<section onclick = "btnno()">
+							<%}else{ %>
+									<section onclick = "location.href='RecommendRes'">
+							<%} %>
+									<span class="icon solid major fa-drumstick-bite accent3"></span>
+									<h3>Restaurant</h3></a>
+									<p>내 주변 음식점을 추천합니다.<br>출출하지 않나요?근처에서 식사 하고 가세요.</p>
+								</section>
 						</div>
 						<div class="features-row">
+						<%if(info==null){ %>
+							<section onclick = "btnno()">
+						<%}else{ %>
 							<section onclick = "location.href='RecommendCafe'">
+						<%} %>
 								<span class="icon solid major fa-coffee accent4"></span>
 								<h3>Cafe</h3></a>
 								<p>내 주변 카페를 추천합니다.<br> 다리도 아픈데 쉬었다 가세요.</p>
 							</section>
 							<section>
-								 
-<!-- 						<span class="icon solid major fa-magic accent5"></span>
-							<h3><a href = "a_event.jsp">Event</h3></a>
-							<p>이벤트 어떻게 구현할지 집에서 생각해봐야겠다 하지만 난 오늘 치킨을 먹으며 야구를 볼 것이다. 친구집 옥상에서 벌써 설렌다희희. 이벤트 페이지 구현은 미래의 나에게 맡긴다 집 보내줘 칼퇴할래</p>
-							 -->
-								
+							<h5>　</h5>
+							<h2 style = "color: #8C8C8C; font-weight: bold;"><br>JEJUGo</h2>
 							</section>
 						</div>
 					</section>
@@ -276,7 +299,7 @@
 						<div class="col-6 col-12-narrower">
 
 							<section class="box special">
-								<span class="image featured"><img src="images/jeju_board.PNG" style="height: 250px;" alt="" /></span>
+								<span class="image featured"><img src="images/jeju_board.PNG" style=" height: 300px;" alt=""  /></span>
 								<h3>사용자 게시판</h3>
 								<p>다른 사용자들은 무슨 글을 남겼을까?</p>
 								<ul class="actions special">
@@ -286,16 +309,20 @@
 
 						</div>
 						<div class="col-6 col-12-narrower">
-
+												
 							<section class="box special">
-								<span class="image featured"><img src="images/jeju_map.PNG" style="height: 250px;" alt="" /></span>
+								<span class="image featured"><img src="images/jeju_map.PNG" style="height: 300px;" alt="" /></span>
 								<h3>나만의 여행지도</h3>
 								<p>내가 다녀온 장소를 한 눈에 보자!</p>
 								<ul class="actions special">
+								
+								<%if(info==null){ %>
+									<li onclick="btnno()"><a class="button alt">여행지도</a></li>
+								<%}else{ %>
 									<li><a href="Mymap" class="button alt">여행지도</a></li>
+								<%} %>
 								</ul>
 							</section>
-
 						</div>
 					</div>
 

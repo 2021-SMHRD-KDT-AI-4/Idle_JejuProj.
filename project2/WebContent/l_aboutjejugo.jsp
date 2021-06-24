@@ -3,7 +3,7 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
-	<head>
+		<head>
 		<title>About│JEJUGo</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -65,7 +65,7 @@
 								</li>
 							<%	} %>
 										
-							<li><a href="#">top</a></li>
+							<li><a href="l_aboutjejugo.jsp">top</a></li>
 						</ul>
 					</li>
 					<%	if(info == null){ 	%>
@@ -82,7 +82,7 @@
 		<!-- Main -->
 		<section id="main" class="container">
 			<header>
-				<h2>About JEJUGo</h2>
+				<a  href = "l_aboutjejugo.jsp"><h2>About JEJUGo</h2></a>
 				<p>든든한 여행 메이트 JEJUGo</p>
 			</header>
 			<div class="box">
