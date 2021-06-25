@@ -16,6 +16,14 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		
 		<style>
+			
+			@font-face {
+				font-family : "jejuFont";
+				src: url("./assets/css/jejuFont.ttf")
+			}
+			.jfont{
+				font-family: "jejuFont";
+			}
 			#btn1{
 				border-top-left-radius: 5px;
 				border-top-right-radius: 5px;
@@ -108,8 +116,8 @@
 			<!-- Main -->
 				<section id="main" class="container">
 					<header>
-						<a href = "c_mymap.jsp"><h2>My map</h2></a>
-						<p>나만의 제주여행지도를 만들어보세요</p>
+						<h2 class="jfont" style="font-size:100px;">My map</h2>
+						<p class="jfont" style="font-size:50px; padding:0px; margin:0px;">나만의 제주여행지도를 만들어보세요</p>
 					</header>
 					<div class="box">
 						<span id = "map" class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -292,7 +300,7 @@
 		   					} --%>
 					   	</script>
 					   
-						<h3>다녀온 곳 리스트</h3>
+						<h3 class="jfont" style="font-size:35px;">다녀온 곳 리스트</h3>
 						<form action = "c_mymap.jsp" method = "post">
 							<table align = "center">
 								<tr align = "center">

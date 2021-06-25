@@ -71,7 +71,7 @@ public class BoardDAO {
 		ArrayList<BoardDTO> blist = new ArrayList<BoardDTO>();
 		getConnection();
 		try {
-			String sql = "SELECT * FROM J_BOARD";
+			String sql = "SELECT * FROM J_BOARD ORDER BY DAY DESC";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			

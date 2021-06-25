@@ -13,6 +13,14 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	
 	<style>
+		@font-face {
+			font-family : "jejuFont";
+			src: url("./assets/css/jejuFont.ttf")
+		}
+		.jfont{
+			font-family: "jejuFont";
+		}
+	
 		#choice1, #choice2, #choice3{
 			border-top-left-radius: 5px;
 			border-top-right-radius: 5px;
@@ -104,17 +112,17 @@
 			<!-- Main -->
 				<section id="main" class="container">
 					<header>
-						<a href = "a_cafe.jsp"><h2>CAFE</h2></a>
-						<p>주변에 이런 카페가 있네요~</p>
+						<h2 class="jfont" style="font-size:100px;">CAFE</h2>
+						<p class="jfont" style="font-size:50px; padding:0px; margin:0px;">주변에 이런 카페가 있네요~</p>
 					</header>
 					<div class="box">
-						<span id = "map" class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<span id = "map" class="image featured" style="height:600px;"><img src="images/pic01.jpg" alt="" /></span>
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8b2521ce63b91e985888264b8d22f1ec&libraries=services"></script>	
 						<script>
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 						    mapOption = { 
 						        center: new kakao.maps.LatLng(35.11096661278524, 126.87736495574595), // 지도의 중심좌표
-						        level: 7 // 지도의 확대 레벨
+						        level: 6 // 지도의 확대 레벨
 						    };
 						
 						//------------------------현재 위치(임의로 제주공항) 가져오기----------------------
@@ -127,7 +135,7 @@
 	   					        var lat = position.coords.latitude, 		// 위도
 	   					            lon = position.coords.longitude; 		// 경도
 	   					        var locPosition = new kakao.maps.LatLng(<%= loc.getLat() %>,<%= loc.getLon() %>), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
-	   					            message = '현재위치'; 						// 인포윈도우에 표시될 내용
+	   					            message = '<div style="font-family:jejuFont;font-size:30px;width:150px;text-align:center;padding:6px 0;">현재위치</div>';	// 인포윈도우에 표시될 내용
 	   					        displayMarker(locPosition, message);	 	// 마커, 인포윈도우 표시
 	   					      });
 	   					    
@@ -221,7 +229,7 @@
 							window.location.href="Choice?index=2&lat="+<%= recommend_cafe.get(2).getLat() %>+"&lon="+<%= recommend_cafe.get(2).getLon() %>;
 						}
 						</script>
-						<h3>내 주변 관광지 </h3>
+						<h3 class="jfont" style="font-size:35px;">내 주변 관광지 </h3>
 							<table align = "center">
 								<tr align = "center">
 									<td stlye="width: 10px;">이름</td>

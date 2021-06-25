@@ -14,7 +14,14 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	
 	<style>
-		
+	
+		@font-face {
+			font-family : "jejuFont";
+			src: url("./assets/css/jejuFont.ttf")
+		}
+		.jfont{
+			font-family: "jejuFont";
+		}
 		a {
 		-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
@@ -106,8 +113,8 @@
 		<!-- Main -->
 		<section id="main" class="container">		
 			<header>
-				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
-				<p>게시판</p>
+				<h2 class="jfont" style="font-size:100px;"> NOTICE BOARD</h2>
+				<p class="jfont" style="font-size:50px; padding:0px; margin:0px;">게시판</p>
 			</header>
 			<div id="board">
 			<table id = "list">
@@ -127,7 +134,7 @@
 				%>
 					<tr>
 						<td width = "8%" ><%= i+1 %></td>
-						<td width = "52%"><a href = "viewBoard?num=<%= i+1 %>"><%= blist.get(i).getTitle() %></a></td>
+						<td width = "52%"><a href = "viewBoard?num=<%= blist.get(i).getNum() %>"><%= blist.get(i).getTitle() %></a></td>
 						<td width = "25%"><%= blist.get(i).getId() %></td>
 						<td width = "25%"><%= blist.get(i).getDay() %></td>
 					</tr>

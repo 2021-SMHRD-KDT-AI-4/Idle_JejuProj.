@@ -14,6 +14,16 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	
 	<style>
+	
+		@font-face {
+			font-family : "jejuFont";
+			src: url("./assets/css/jejuFont.ttf")
+		}
+	
+		section{
+			font-family: "jejuFont";
+		}
+		
 		.check{
 			position: absolute;
 			left: 50%; 
@@ -126,8 +136,8 @@
 
 			<!-- Banner -->
 				<section id="banner">
-					<h2>JEJUGo</h2>
-					<p>당신의 든든한 여행 메이트. 함께가요 제주도</p>
+					<h2 class="jfont" style="font-size:100px;">JEJUGo</h2>
+					<p class="jfont"><font size="50px">당신의 든든한 여행 메이트. 함께가요 제주도</font></p>
 					<ul class="actions special">
 					<!-- <li><a href="signin.jsp" class="button primary">Sing In</a></li> -->	
 							
@@ -144,9 +154,9 @@
 						</script>
 						
 					<%if(info==null){ %>
-						<li onclick="btnno()"><a class="button primary" id="primary">태그 설정</a ></li>
+						<li onclick="btnno()"><a class="button primary" id="primary"><font size="7px">태그 설정</font></a ></li>
 					<%}else{ %>
-						<li onclick="tagbtnyes()"><a class="button primary" id="primary">태그 설정</a ></li>
+						<li onclick="tagbtnyes()"><a class="button primary" id="primary"><font size="7px">태그 설정</font></a ></li>
 					<%} %>
 						<form action="Tour_info" method="post">
 							<div id="check_tag" class="check">	
@@ -174,7 +184,7 @@
 										</td>
 									</tr>
 									<tr align="center">
-										<td>
+										<td style="font-size:25px;">
 											<input type="checkbox" name="tag" value="사진" class="ct" id="family"><label for="family">사진</label>
 											<input type="checkbox" name="tag" value="관광" class="ct" id="friend"><label for="friend">관광</label><br>
 											<input type="checkbox" name="tag" value="힐링" class="ct" id="couple"><label for="couple">힐링</label>
@@ -203,17 +213,16 @@
 							<h2>내 주변의 좋은 관광지 및 음식점을 
 							<br />
 							지금 확인해 보세요</h2>
-							<p><%	if(info == null){ 	%>
+							<p><font size="10px"><%	if(info == null){ 	%>
 								<!-- 로그인 안했을때 -->
 									로그인을 해주세요.
 							<%	}else{ %>	
 									<%= info.getName() %>님의 현재 위치입니다
 							<%	} %>
-							</p>
+							</font></p>
 						</header>
 					
-						
-						<span id = "map" class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<span id = "map" class="image featured" style="height:600px;"><img src="images/pic01.jpg" alt="" /></span>
 					
   						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8b2521ce63b91e985888264b8d22f1ec&libraries=services"></script>
    						<script>
@@ -221,7 +230,7 @@
 	   						var mapContainer = document.getElementById('map'), 		// 지도를 표시할 div 
 	   					    mapOption = { 
 	   					        center: new kakao.maps.LatLng(33.5101562, 126.4681157), // 지도의 중심좌표/ 일단 제주공항
-	   					        level: 7 // 지도 확대 레벨 
+	   					        level: 8 // 지도 확대 레벨 
 	   					    }; 
 	
 		   					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성
@@ -232,7 +241,7 @@
 		   					        var lat = position.coords.latitude, 		// 위도
 		   					            lon = position.coords.longitude; 		// 경도
 		   					        var locPosition = new kakao.maps.LatLng(<%= gps_lat %>, <%= gps_lon %>), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
-		   					            message = '현재위치'; 							// 인포윈도우에 표시될 내용
+		   					            message = '<div style="font-size:30px;width:150px;text-align:center;padding:6px 0;">현재위치</div>';	// 인포윈도우에 표시될 내용
 		   					        displayMarker(locPosition, message);	 	// 마커, 인포윈도우 표시
 		   					      });
 		   					} else { 			// HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -254,7 +263,7 @@
 		   					    infowindow.open(map, marker);	// 인포윈도우를 마커위에 표시
 		   					    map.setCenter(locPosition);     // 지도 중심좌표를 접속위치로 변경
 		   					}    
-					   </script>
+		   				</script>
    						
 					</section>
 
@@ -269,7 +278,7 @@
 							<%} %>
 									<span class="icon solid major fa-map accent2"></span>
 									<h3>SIGHTS</h3></a>
-									<p>내 주변 관광지를 추천합니다.<br>근처에 가볼만 한 곳이 어디 있을까요?</p>
+									<p><font size="6px">내 주변 관광지를 추천합니다.<br>근처에 가볼만 한 곳이 어디 있을까요?</font></p>
 								</section>
 							
 							<%if(info==null){ %>
@@ -281,7 +290,7 @@
 							<%} %>
 									<span class="icon solid major fa-drumstick-bite accent3"></span>
 									<h3>Restaurant</h3></a>
-									<p>내 주변 음식점을 추천합니다.<br>출출하지 않나요?근처에서 식사 하고 가세요.</p>
+									<p><font size="6px">내 주변 음식점을 추천합니다.<br>출출하지 않나요?근처에서 식사 하고 가세요.</font></p>
 								</section>
 						</div>
 						<div class="features-row">
@@ -294,11 +303,10 @@
 						<%} %>
 								<span class="icon solid major fa-coffee accent4"></span>
 								<h3>Cafe</h3></a>
-								<p>내 주변 카페를 추천합니다.<br> 다리도 아픈데 쉬었다 가세요.</p>
+								<p><font size="6px">내 주변 카페를 추천합니다.<br> 다리도 아픈데 쉬었다 가세요.</font></p>
 							</section>
 							<section>
-							<h5>　</h5>
-							<h2 style = "color: #8C8C8C; font-weight: bold;"><br>JEJUGo</h2>
+							<h2 style = "color: #8C8C8C; font-weight: bold; font-size:80px;"><br>JEJUGo</h2>
 							</section>
 						</div>
 					</section>
@@ -309,9 +317,9 @@
 							<section class="box special">
 								<span class="image featured"><img src="images/jeju_board.PNG" style=" height: 300px;" alt=""  /></span>
 								<h3>사용자 게시판</h3>
-								<p>다른 사용자들은 무슨 글을 남겼을까?</p>
+								<p><font size="6px">다른 사용자들은 무슨 글을 남겼을까?</font></p>
 								<ul class="actions special">
-									<li><a href="b_boardmain.jsp" class="button alt">게시판 들어가기</a></li>
+									<li><a href="b_boardmain.jsp" class="button alt"><font size="7px">게시판 들어가기</font></a></li>
 								</ul>
 							</section>
 
@@ -321,13 +329,13 @@
 							<section class="box special">
 								<span class="image featured"><img src="images/jeju_map.PNG" style="height: 300px;" alt="" /></span>
 								<h3>나만의 여행지도</h3>
-								<p>내가 다녀온 장소를 한 눈에 보자!</p>
+								<p><font size="6px">내가 다녀온 장소를 한 눈에 보자!</font></p>
 								<ul class="actions special">
 								
 								<%if(info==null){ %>
-									<li onclick="btnno()"><a class="button alt">여행지도</a></li>
+									<li onclick="btnno()"><a class="button alt"><font size="7px">여행지도</font></a></li>
 								<%}else{ %>
-									<li><a href="Mymap" class="button alt">여행지도</a></li>
+									<li><a href="Mymap" class="button alt"><font size="7px">여행지도</font></a></li>
 								<%} %>
 								</ul>
 							</section>

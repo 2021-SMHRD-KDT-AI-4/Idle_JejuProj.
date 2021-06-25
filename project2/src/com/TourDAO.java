@@ -103,7 +103,7 @@ public class TourDAO {
 				dist = dist*1.609344;
 				
 				// 거리 조절
-				if (dist >= 5.0 && dist <= 10.0) {
+				if (dist >= 6.0 && dist <= 10.0) {
 					if (name != null) {
 						distdto = new TourDTO(name, tInfo, addr, img, lat2, lon2, dist);
 						recommend.add(distdto);
@@ -167,7 +167,7 @@ public class TourDAO {
 				dist = dist*1.609344;
 				
 				// 거리 조절
-				if (dist >= 5.0 && dist <= 10.0) {
+				if (dist >= 1.0 && dist <= 5.0) {
 					
 					if (name != null) {
 						distdto = new TourDTO(name, tInfo, addr, img, lat2, lon2, dist);
@@ -234,7 +234,7 @@ public class TourDAO {
 				dist = dist*1.609344;
 				
 				// 거리 조절
-				if (dist >= 5.0 && dist <= 10.0) {
+				if (dist >= 0.5 && dist <= 3.0) {
 				
 					if (name != null) {
 						distdto = new TourDTO(name, tInfo, addr, img, lat2, lon2, dist);
