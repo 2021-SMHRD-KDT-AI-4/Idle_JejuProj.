@@ -10,6 +10,14 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	
 	<style>
+		@font-face {
+			font-family : "jejuFont";
+			src: url("./assets/css/jejuFont.ttf")
+		}
+		.jfont{
+			font-family: "jejuFont";
+		}
+	
 		#btn1 {
 			border-top-left-radius: 5px;
 			border-top-right-radius: 5px;
@@ -92,8 +100,8 @@
 		<!-- Main -->
 		<section id="main" class="container">
 			<header>
-				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
-				<p>게시글 작성</p>
+				<h2 class="jfont" style="font-size:100px;">NOTICE BOARD</h2>
+				<p class="jfont" style="font-size:50px;">게시글 작성</p>
 			</header>
 			<div id = "board">
 			<form action="WriteBoard" method="post">

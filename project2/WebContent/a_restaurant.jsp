@@ -127,7 +127,7 @@
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 						    mapOption = { 
 						        center: new kakao.maps.LatLng(35.11096661278524, 126.87736495574595), // 지도의 중심좌표
-						        level: 6 // 지도의 확대 레벨
+						        level: 5 // 지도의 확대 레벨
 						    };
 						
 						//------------------------현재 위치(임의로 제주공항) 가져오기----------------------
@@ -140,7 +140,7 @@
 	   					        var lat = position.coords.latitude, 		// 위도
 	   					            lon = position.coords.longitude; 		// 경도
 	   					        var locPosition = new kakao.maps.LatLng(<%= loc.getLat() %>,<%= loc.getLon() %>), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
-	   					            message = '<div style="font-family:jejuFont;font-size:30px;width:150px;text-align:center;padding:6px 0;">현재위치</div>'; 	// 인포윈도우에 표시될 내용
+	   					            message = '<div style="font-size:20px;width:150px;text-align:center;padding:6px 0;">현재위치</div>'; 	// 인포윈도우에 표시될 내용
 	   					        displayMarker(locPosition, message);	 	// 마커, 인포윈도우 표시
 	   					      });
 	   					    
@@ -234,35 +234,35 @@
 							window.location.href="Choice?index=2&lat="+<%= recommend_res.get(2).getLat() %>+"&lon="+<%= recommend_res.get(2).getLon() %>;
 						}
 						</script>
-						<h3 class="jfont" style="font-size:50px;">내 주변 관광지 </h3>
+						<h3>내 주변 관광지 </h3>
 							<table align = "center">
 								<tr align = "center">
-									<td stlye="width: 10px;">이름</td>
+									<td style="width: 10%;">이름</td>
 									<td><%= recommend_res.get(0).getName() %></td>
 									<td><%= recommend_res.get(1).getName() %></td>
 									<td><%= recommend_res.get(2).getName() %></td>
 								</tr>
 								<tr align = "center">
-									<td stlye="width: 8px;"></td>
+									<td style="width: 10%;"></td>
 									<td><img src = "<%= recommend_res.get(0).getImg() %>"></td>
 									<td><img src = "<%= recommend_res.get(1).getImg() %>"></td>
 									<td><img src = "<%= recommend_res.get(2).getImg() %>"></td>
 								</tr>
 								<tr align = "center">
-									<td stlye="width: 10px;">소개</td>
+									<td style="width: 10%;">소개</td>
 									<td><%= recommend_res.get(0).getInfo() %></td>
 									<td><%= recommend_res.get(1).getInfo() %></td>
 									<td><%= recommend_res.get(2).getInfo() %></td>
 								</tr>
 								<tr align = "center">
-									<td stlye="width: 10px;">주소</td>
+									<td style="width: 10%;">주소</td>
 									<td><%= recommend_res.get(0).getAddr() %></td>
 									<td><%= recommend_res.get(1).getAddr() %></td>
 									<td><%= recommend_res.get(2).getAddr() %></td>
 								</tr>
 								<tr align = "center">
 								
-									<td stlye="width: 10px;"> </td>									
+									<td style="width: 10%;"> </td>									
 									<td><button id="choice1" onclick ="btn1()">선택</button></td>
 									<td><button id="choice2" onclick ="btn2()">선택</button></td>
 									<td><button id="choice3" onclick ="btn3()">선택</button></td>

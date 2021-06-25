@@ -12,6 +12,13 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	
 	<style>
+		@font-face {
+			font-family : "jejuFont";
+			src: url("./assets/css/jejuFont.ttf")
+		}
+		.jfont{
+			font-family: "jejuFont";
+		}
 		
 		a {
 			-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
@@ -106,8 +113,8 @@
 		<!-- Main -->
 		<section id="main" class="container">		
 			<header>
-				<a href = "b_boardmain.jsp"><h2>NOTICE BOARD</h2></a>
-				<p>게시글</p>
+				<h2 class="jfont" style="font-size:100px;">NOTICE BOARD</h2>
+				<p class="jfont" style="font-size:50px;">게시글</p>
 			</header>
 			
 			<%

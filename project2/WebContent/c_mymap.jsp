@@ -300,7 +300,7 @@
 		   					} --%>
 					   	</script>
 					   
-						<h3 class="jfont" style="font-size:35px;">다녀온 곳 리스트</h3>
+						<h3>다녀온 곳 리스트</h3>
 						<form action = "c_mymap.jsp" method = "post">
 							<table align = "center">
 								<tr align = "center">
