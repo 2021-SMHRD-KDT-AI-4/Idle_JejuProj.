@@ -1,12 +1,11 @@
 <%@page import="com.BoardDTO"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-	<title>게시글│JEJUGo</title>
+	<title>게시글 작성│JEJUGo</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -19,21 +18,8 @@
 		.jfont{
 			font-family: "jejuFont";
 		}
-		
-		a {
-			-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-			-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-			-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-			transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-			border-bottom-color: transparent;
-			color: #777;
-			text-decoration: none;
-		}
-		a:hover {
-			border-bottom: dotted 1px;
-		}
 	
-		#btn1, #btn2, #btn3{
+		#btn1 {
 			border-top-left-radius: 5px;
 			border-top-right-radius: 5px;
 			border-bottom-left-radius: 5px;
@@ -43,13 +29,13 @@
 			color : white;
 			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
 		}
-		#btn1:hover, #btn2:hover, #btn3:hover{
+		#btn1:hover {
 			border: 1px solid #F97B5A;
 			background-color:#F97B5A ;
 			color : white;
 			box-shadow: 1px 2px 0 rgb(0,0,0,0.5);
 		}
-		#btn1:active, #btn2:active, #btn3:active {
+		#btn1:active {
 			border: 1px solid #E9E8E7;
 			background-color:#F97B5A ;
 			color : white;
@@ -66,15 +52,17 @@
 		td{
 			width : 33%;
 		}
+		
 	</style>
+	
 </head>
-
 <body class="is-preload">
 	<div id="page-wrapper">
 
 		<!-- Header -->
 		<%
 			MemberDTO info =  (MemberDTO)session.getAttribute("info");  // 오른쪽 다운캐스팅함
+			BoardDTO vlist = (BoardDTO)session.getAttribute("vlist");
 		%>
 		<header id="header">
 			<h1><a href="index.jsp">JEJUGo</a> by djWaidle</h1>
@@ -85,18 +73,19 @@
 						<a href="#" class="icon solid fa-angle-down">MENU</a>
 						<ul>
 							<li><a href="l_aboutjejugo.jsp">AboutJEJUGo</a></li>
-								
+									
 							<%	if(info!=null){ %>
 								<li><a href="l_mypage.jsp">mypage</a></li>
+								
 							<%	}else{ %>
-								<li><a href="b_boardmain.jsp">mypage</a>
+								<li><a href="#">mypage</a>
 									<ul>
 										<li><a href="signin.jsp">sign in please</a></li>
 									</ul>
 								</li>
 							<%	} %>
-									
-							<li><a href="b_viewboard.jsp">top</a></li>
+										
+							<li><a href="b_writeboard.jsp">top</a></li>
 						</ul>
 					</li>
 					<%	if(info == null){ 	%>
@@ -104,63 +93,45 @@
 						<li><a href="signin.jsp" class="button primary">Sing In</a></li>
 						<li><a href="signup.jsp" class="button">Sign Up</a></li>
 					<%	}else{ %>	
-						<li><a href="signoutService" class="button">Sign Out</a></li>
+							<li><a href="signoutService" class="button">Sign Out</a></li>
 					<%	} %>
 				</ul>
 			</nav>
 		</header>
-				
+
 		<!-- Main -->
-		<section id="main" class="container">		
+		<section id="main" class="container">
 			<header>
 				<h2 class="jfont" style="font-size:100px;">NOTICE BOARD</h2>
-				<p class="jfont" style="font-size:50px;">게시글</p>
+				<p class="jfont" style="font-size:50px;">게시글 수정</p>
 			</header>
-			
-			<%
-				BoardDTO vlist = (BoardDTO)session.getAttribute("vlist");
-				System.out.println(vlist.getId());
-				System.out.println(info.getId());
-			%>
-			
-			<div id="board">
-				<table id = "list">
-					<tbody>
-						<tr>
-							<td style = "width: 20%;", align = "center">제목</td>
-							<td style = "width: 80%;", align = "center"><%= vlist.getTitle() %></td>
-						</tr>
-						<tr>	
-							<td style = "width: 20%;", align = "center">작성자</td>
-							<td style = "width: 80%;", align = "right"><%= vlist.getId() %></td>
-						</tr>
-						<tr>	
-							<td style = "width: 20%;", align = "center" >작성일</td>
-							<td style = "width: 80%;", align = "right"><%= vlist.getDay() %></td>
-						</tr>
-						<tr>
-							<td colspan = "2" align = "center">내용</td>
-						</tr>
-						<tr>
-							<td style = "height: 300px;">
-								<%= vlist.getContent() %>
-							<td colspan = "2">
-								<%-- 게시글 이미지와 내용 출력 --%>
-							</td>
-						</tr>
-					</tbody>
+			<div id = "board">
+			<form action="messageUpdate" method="post">
+				<table id="list">
+					<tr>
+						<td style = "width: 20%;", align = "center">제목</td>
+						<td style = "width: 80%;"><%= vlist.getTitle() %></td>
+					</tr>
+					<tr>
+						<td style = "width: 20%;", align = "center">내용</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="file" style="float: right;" name = "img">
+							<textarea rows="10" style="resize: none;" name = "content"></textarea>			
+						</td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2">
+							<input id = "btn1" type="reset" value="초기화">
+							<input id = "btn1" type="submit" value="수정하기">
+						</td>
+					</tr>
 				</table>
-			<button id = "btn1" onclick="location.href='b_boardmain.jsp'">뒤로가기</button>
-			<% if(info!=null && vlist.getId().equals(info.getId())) { %>
-				<button id="btn2" onclick="location.href='b_updateboard.jsp'">수정하기</button>
-				<button id="btn3" onclick="location.href='messageDelete'">삭제하기</button>
-			<%} else { %>
-				<button id="btn2" onclick ="btnCheck()">수정하기</button>
-				<button  id="btn3"  onclick ="btnCheck()">삭제하기</button>
-			<% } %>
+			</form>
 			</div>
 		</section>
-	</div>
 
 			<!-- Footer -->
 			<footer id="footer">
@@ -177,6 +148,8 @@
 				</ul>
 			</footer>
 
+		</div>
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -186,11 +159,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-			<script>
-				function btnCheck(){
-					alert("권한이 없습니다.")
-				}
-			</script>
-
 	</body>
+
+
 </html>

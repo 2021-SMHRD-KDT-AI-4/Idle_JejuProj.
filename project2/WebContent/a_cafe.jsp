@@ -229,7 +229,7 @@
 							window.location.href="Choice?index=2&lat="+<%= recommend_cafe.get(2).getLat() %>+"&lon="+<%= recommend_cafe.get(2).getLon() %>;
 						}
 						</script>
-						<h3>내 주변 관광지 </h3>
+						<h3>내 주변 카페</h3>
 							<table align = "center">
 								<tr align = "center">
 									<td style="width: 10%;">이름</td>

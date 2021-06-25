@@ -118,4 +118,35 @@ public class BoardDAO {
 		}
 		return bdto;
 	}
+	
+	public int update(BoardDTO bdto) {
+		
+		getConnection();
+		
+		try {
+			String sql = "UPDATE J_BOARD SET CONTENT=?, DAY=SYSDATE WHERE ID=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, bdto.getContent());
+			psmt.setString(2, bdto.getId());
+			cnt = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	public int delete(int num) {
+		
+		getConnection();
+		try {
+			String sql = "DELETE FROM J_BOARD WHERE NUM=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, num);
+			cnt = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
 }

@@ -34,7 +34,6 @@ public class signinService extends HttpServlet {
 		
 		if (info != null) {
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(500);
 			session.setAttribute("info", info);
 			response.sendRedirect("index.jsp");
 		}else {
