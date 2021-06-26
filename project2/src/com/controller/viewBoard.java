@@ -18,10 +18,10 @@ public class viewBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("EUC-KR");
+		
 		HttpSession session = request.getSession();
 		int num = Integer.parseInt(request.getParameter("num"));
-		
 		BoardDAO bdao = new BoardDAO();
 		BoardDTO vlist = bdao.view(num);
 		
